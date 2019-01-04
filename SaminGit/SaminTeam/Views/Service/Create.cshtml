@@ -1,0 +1,174 @@
+﻿@model SaminProject.Models.Service
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@section PageHeader{
+    <div class="page-header page-header-default">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-arrow-right6 position-left"></i> <span class="text-semibold">مدیریت اخبار</span> - داشبورد</h4>
+            </div>
+        </div>
+        <div class="breadcrumb-line">
+            <ul class="breadcrumb">
+                <li><a href="/admin/index"><i class="icon-home2 position-left"></i> داشبورد</a></li>
+                <li class="active">مدیریت اخبار</li>
+            </ul>
+        </div>
+
+
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-white" id="form_panel">
+            <div class="panel-heading">
+                <h6 class="panel-title"><i class="icon-user-plus position-left"></i>ثبت خدمت جدید<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+
+                <div class="heading-elements">
+                    <ul class="icons-list">
+                        <li><a data-action="collapse" class=""></a></li>
+                    </ul>
+                    <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                </div>
+            </div>
+
+            <div class="panel-body">
+
+                @if (TempData["Success"] != null)
+                {
+                    <div class="col-md-12">
+                        <div class="alert alert-success alert-styled-left alert-arrow-left alert-component">
+                            @TempData["Success"]
+                        </div>
+                    </div>
+                }
+
+                @if (TempData["Error"] != null)
+                {
+                    <div class="col-md-12">
+                        <div class="alert alert-danger alert-styled-left alert-arrow-left alert-component">
+                            @TempData["Error"]
+                        </div>
+                    </div>
+                }
+
+                @using (Html.BeginForm("Create", "Service", FormMethod.Post, new { id = "frm_Service", autocomplete = "off", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.ID)
+                    @Html.HiddenFor(x => x.Base64Image)
+
+                    <div class="form-horizontal">
+                        <div class="row">
+
+                            <div class="col-sm-8">
+                                <fieldset>
+                                    <legend><i class="icon-user mr-5"></i>خدمت</legend>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.Title, new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @maxlength = 100 })
+                                                @Html.ValidationMessageFor(x => x.Title)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @if (Model.Status)
+                                    {
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.LabelFor(x => x.Status, new { @class = "control-label col-md-4" })
+                                                <div class="col-md-8">
+                                                    <label class="tgl-checkbox">
+                                                        <input type="hidden" name="Status" id="Status" value="true" />
+                                                        <input name="StatusShow" class="tgl tgl-ios" id="StatusShow" type="checkbox" checked>
+                                                        <label class="tgl tgl-btn" for="StatusShow"></label>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.LabelFor(x => x.Status, new { @class = "control-label col-md-4" })
+                                                <div class="col-md-8">
+                                                    <label class="tgl-checkbox">
+                                                        <input type="hidden" name="Status" id="Status" value="false" />
+                                                        <input name="StatusShow" class="tgl tgl-ios" id="StatusShow" type="checkbox">
+                                                        <label class="tgl tgl-btn" for="StatusShow"></label>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    <div class="clearfix"></div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.Description, new { @class = "control-label col-md-1" })
+                                            <div class="col-md-11">
+                                                @Html.TextBoxFor(x => x.Description, new { @class = "form-control", @maxlength = 250 })
+                                                @Html.ValidationMessageFor(x => x.Description)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                @Html.LabelFor(x => x.Content, new { @class = "control-label" })
+                                                @Html.TextBoxFor(x => x.Content, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.Content)
+                                            </div>
+                                        </div>
+
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-4">
+                                <fieldset>
+                                    <legend><i class="icon-image2 mr-5"></i>عکس خدمت</legend>
+                                    <div class="col-sm-6 col-sm-offset-3">
+                                        <div class="kv-avatar">
+                                            <div class="file-loading">
+                                                <input id="avatar" name="ContentFile" type="file">
+                                            </div>
+                                        </div>
+                                        <div class="kv-avatar-hint"><small>حداکثر حجم مجاز 200 کیلوبایت </small></div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="text-danger text-center" id="kv-error"></div>
+                                </fieldset>
+                            </div>
+
+                            <div class="clearfix"></div>
+
+                            <div class="text-center">
+                                <button type="submit" id="submit" class="btn btn-primary">ثبت خدمت<i class="icon-add position-right"></i></button>
+                                <a href="/Service/Index" class="btn btn-warning" id="btnCancle">بازگشت<i class="icon-undo position-right"></i></a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/assest/js/plugins/editors/summernote/summernote.min.js"></script>
+    <script src="~/assest/js/plugins/editors/summernote/lang/summernote-fa-IR.js"></script>
+    <script src="~/Scripts/Page/Service.js"></script>
+}
+

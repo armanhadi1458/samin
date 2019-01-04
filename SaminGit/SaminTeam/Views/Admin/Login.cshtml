@@ -1,0 +1,108 @@
+﻿@model SaminProject.Models.User
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ثمین</title>
+    <link href="~/assest/css/icons/icomoon/styles.css" rel="stylesheet" />
+    <link href="~/assest/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/assest/css/core.css" rel="stylesheet" />
+    <link href="~/assest/css/components.css" rel="stylesheet" />
+    <link href="~/assest/css/colors.min.css" rel="stylesheet" />
+    <!-- /global stylesheets -->
+    <!-- /theme JS files -->
+
+</head>
+
+<body class="login-container bg-slate-800  pace-done">
+    <div class="pace  pace-inactive">
+        <div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+            <div class="pace-progress-inner"></div>
+        </div>
+        <div class="pace-activity"></div>
+    </div>
+
+    <!-- Page container -->
+    <div class="page-container pb-20" style="min-height:402px">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+
+                @using (Html.BeginForm("Login", "Admin", FormMethod.Post, new { id = "frm_login", @class = "", autocomplete = "off" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="panel panel-body login-form">
+                        <div class="text-center">
+                            <div class="icon-object border-warning-400 text-warning-400"><i class="icon-lifebuoy"></i></div>
+                            <h5 class="content-group-lg">صفحه ورود ثمین <small class="display-block">ورود به حساب کاربری</small></h5>
+                        </div>
+
+                        <div class="form-group has-feedback has-feedback-left">
+                            @Html.TextBoxFor(Model => Model.UserName, new { @class = "form-control", @placeholder = "نام کاربری" })
+                            <div class="form-control-feedback">
+                                <i class="icon-user text-muted"></i>
+                            </div>
+                            @Html.ValidationMessageFor(Model => Model.UserName)
+                        </div>
+
+                        <div class="form-group has-feedback has-feedback-left">
+                            @Html.TextBoxFor(Model => Model.Password, new { @class = "form-control", @placeholder = "رمز عبور", type = "password" })
+                            <div class="form-control-feedback">
+                                <i class="icon-lock2 text-muted"></i>
+                            </div>
+                            @Html.ValidationMessageFor(Model => Model.Password)
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn bg-blue btn-block" id="enter">ورود <i class="icon-arrow-left13 position-right"></i></button>
+                        </div>
+
+                    </div>
+                }
+
+
+                <!-- Advanced login -->
+                <!-- /advanced login -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+    <script src="~/assest/js/core/libraries/jquery.min.js"></script>
+    <script src="~/assest/js/core/libraries/bootstrap.min.js"></script>
+    @*<script type="text/javascript" src="~/assets/js/plugins/loaders/pace.min.js"></script>*@
+    @*<script src="~/assets/js/plugins/loaders/blockui.min.js"></script>*@
+    @*<script src="~/assets/js/plugins/toaster/toastr.min.js"></script>*@
+    @*<script type="text/javascript" src="~/assets/js/plugins/forms/styling/uniform.min.js"></script>*@
+    <!-- /core JS files -->
+    <script src="~/assest/js/core/app.js"></script>
+
+    <script>
+
+        $(function () {
+
+              $('#UserName').focus();
+              $('#enter').on('click', function () {
+                  LoadElement('.content-wrapper');
+              });
+
+          });
+
+    </script>
+</body>
+</html>

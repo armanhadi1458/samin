@@ -1,0 +1,228 @@
+﻿@model SaminProject.Models.Product
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 100%;
+        max-width: 700px;
+    }
+</style>
+
+@section PageHeader{
+    <div class="page-header page-header-default">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-arrow-right6 position-left"></i> <span class="text-semibold">مدیریت محصولات</span> - داشبورد</h4>
+            </div>
+        </div>
+        <div class="breadcrumb-line">
+            <ul class="breadcrumb">
+                <li><a href="/admin/index"><i class="icon-home2 position-left"></i> داشبورد</a></li>
+                <li class="active">مدیریت محصولات</li>
+            </ul>
+        </div>
+
+
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-white" id="form_panel">
+            <div class="panel-heading">
+                <h6 class="panel-title"><i class="icon-user-plus position-left"></i>ثبت خدمت جدید<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+
+                <div class="heading-elements">
+                    <ul class="icons-list">
+                        <li><a data-action="collapse" class=""></a></li>
+                    </ul>
+                    <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                </div>
+            </div>
+
+            <div class="panel-body">
+
+                @if (TempData["Success"] != null)
+                {
+                    <div class="col-md-12">
+                        <div class="alert alert-success alert-styled-left alert-arrow-left alert-component">
+                            @TempData["Success"]
+                        </div>
+                    </div>
+                }
+
+                @if (TempData["Error"] != null)
+                {
+                    <div class="col-md-12">
+                        <div class="alert alert-danger alert-styled-left alert-arrow-left alert-component">
+                            @TempData["Error"]
+                        </div>
+                    </div>
+                }
+
+                @using (Html.BeginForm("Create", "Product", FormMethod.Post, new { id = "frm_Product", autocomplete = "off", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.ID)
+
+                    <div class="form-horizontal">
+                        <div class="row">
+
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.Title, new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @maxlength = 100 })
+                                            @Html.ValidationMessageFor(x => x.Title)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @if (Model != null && Model.Status)
+                                {
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.Status, new { @class = "control-label col-md-4" })
+                                            <div class="col-md-8">
+                                                <label class="tgl-checkbox">
+                                                    <input type="hidden" name="Status" id="Status" value="true" />
+                                                    <input name="StatusShow" class="tgl tgl-ios" id="StatusShow" type="checkbox" checked>
+                                                    <label class="tgl tgl-btn" for="StatusShow"></label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.Status, new { @class = "control-label col-md-4" })
+                                            <div class="col-md-8">
+                                                <label class="tgl-checkbox">
+                                                    <input type="hidden" name="Status" id="Status" value="false" />
+                                                    <input name="StatusShow" class="tgl tgl-ios" id="StatusShow" type="checkbox">
+                                                    <label class="tgl tgl-btn" for="StatusShow"></label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                                <div class="clearfix"></div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.Description, new { @class = "control-label col-md-1" })
+                                        <div class="col-md-11">
+                                            @Html.TextBoxFor(x => x.Description, new { @class = "form-control", @maxlength = 250 })
+                                            @Html.ValidationMessageFor(x => x.Description)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin:5px 15px;">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a data-toggle="tab" href="#new-attachments">تصویر جدید</a></li>
+                                        <li><a data-toggle="tab" href="#document-attachments">تصاویر موجود</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div id="new-attachments" class="tab-pane active">
+                                            <div class="col-sm-12" style="margin-bottom: 10px; margin-right: 2px;">
+                                                <input name="Images" type="file" class="file-input-ajax" multiple="multiple" />
+                                                <div id="errorBlock" class="help-block"></div>
+                                            </div>
+                                        </div>
+                                        <div id="document-attachments" class="tab-pane">
+                                            @if (Model != null)
+                                            {
+                                                <div id="attachments">
+                                                    @Html.Action("_ProductImage", new { pID = Model.ID })
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="alert alert-info">
+                                                    <p>برای مشاهده تصاویر سند ابتدا سند را ثبت فرمایید سپس دوباره اقدام فرمایید</p>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.Content, new { @class = "control-label" })
+                                        @Html.TextBoxFor(x => x.Content, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.Content)
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="clearfix"></div>
+
+
+                            <div class="text-center">
+                                <button type="submit" id="submit" class="btn btn-primary">ثبت محصول<i class="icon-add position-right"></i></button>
+                                <a href="/Product/Index" class="btn btn-warning" id="btnCancle">بازگشت<i class="icon-undo position-right"></i></a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-center" id="deleteDocumentAttachment" aria-hidden="true" aria-labelledby="deleteAttachmentModal" role="dialog" tabindex="-1" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title c-red"><i class="icon wb-trash"></i> حذف تصویر محضول</h4>
+            </div>
+            <div class="modal-body">
+                <p>آیا از حذف این تصویر اطمینان دارید؟</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-raised wavs-effect" data-dismiss="modal">منصرف شدم</button>
+                <button type="button" class="btn btn-danger btn-raised wavs-effect" id="deleteAttachmentConfirm">بله مطمئنم</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-center" id="showDocumentPic" aria-hidden="true" aria-labelledby="showDocumentPic" role="dialog" tabindex="-1" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title c-red"><i class="icon-file-picture"></i> نمایش عکس<span id="title"></span></h4>
+            </div>
+            <div class="modal-body">
+                <img class="modal-content" id="show-pic" src="" alt="" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/assest/js/plugins/editors/summernote/summernote.min.js"></script>
+    <script src="~/assest/js/plugins/editors/summernote/lang/summernote-fa-IR.js"></script>
+    <script src="~/Scripts/Page/Product.js"></script>
+}
+

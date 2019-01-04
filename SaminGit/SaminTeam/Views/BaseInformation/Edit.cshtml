@@ -1,0 +1,193 @@
+﻿@model SaminProject.Models.BaseInformation
+@{
+    ViewBag.Title = "ویرایش اطلاعات پایه";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageHeader{
+    <div class="page-header page-header-default">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-equalizer position-left"></i> <span class="text-semibold">مدیریت اطلاعات پایه</span> - داشبورد</h4>
+            </div>
+        </div>
+        <div class="breadcrumb-line">
+            <ul class="breadcrumb">
+                <li><a href="/admin/index"><i class="icon-home2 position-left"></i> داشبورد</a></li>
+                <li class="active">مدیریت اطلاعات پایه</li>
+            </ul>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-white" id="form_panel">
+            <div class="panel-heading">
+                <h6 class="panel-title"><i class="icon-equalizer position-left"></i>ویرایش اطلاعات پایه<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+
+                <div class="heading-elements">
+                    <ul class="icons-list">
+                        <li><a data-action="collapse" class=""></a></li>
+                    </ul>
+                    <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                @if (TempData["Success"] != null)
+                {
+                    <div class="col-md-12">
+                        <div class="alert alert-success alert-styled-left alert-arrow-left alert-component">
+                            @TempData["Success"]
+                        </div>
+                    </div>
+                }
+
+                @if (TempData["Error"] != null)
+                {
+                    <div class="col-md-12">
+                        <div class="alert alert-danger alert-styled-left alert-arrow-left alert-component">
+                            @TempData["Error"]
+                        </div>
+                    </div>
+                }
+
+                @using (Html.BeginForm("Edit", "BaseInformation", FormMethod.Post, new { id = "frm_info", @class = "", autocomplete = "off", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.ID)
+                    @Html.HiddenFor(x => x.Base64Image)
+
+                    <div class="row">
+
+                        <div class="col-sm-9">
+                            <fieldset>
+                                <legend><i class="icon-equalizer mr-5"></i>اطلاعات پایه</legend>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.Title, new { @class = "control-label" })
+                                            @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @maxlength = 50 })
+                                            @Html.ValidationMessageFor(x => x.Title)
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.Email, new { @class = "control-label" })
+                                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @maxlength = 100 })
+                                            @Html.ValidationMessageFor(x => x.Email)
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.Phone, new { @class = "control-label" })
+                                            @Html.TextBoxFor(x => x.Phone, new { @class = "form-control Phone" })
+                                            @Html.ValidationMessageFor(x => x.Phone)
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.Mobile, new { @class = "control-label" })
+                                            @Html.TextBoxFor(x => x.Mobile, new { @class = "form-control Phone" })
+                                            @Html.ValidationMessageFor(x => x.Mobile)
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.Telegram, new { @class = "control-label" })
+                                            @Html.TextBoxFor(x => x.Telegram, new { @class = "form-control", @maxlength = 100 })
+                                            @Html.ValidationMessageFor(x => x.Telegram)
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.Instagram, new { @class = "control-label" })
+                                            @Html.TextBoxFor(x => x.Instagram, new { @class = "form-control", @maxlength = 100 })
+                                            @Html.ValidationMessageFor(x => x.Instagram)
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.FaceBook, new { @class = "control-label" })
+                                            @Html.TextBoxFor(x => x.FaceBook, new { @class = "form-control", @maxlength = 100 })
+                                            @Html.ValidationMessageFor(x => x.FaceBook)
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.Address1, new { @class = "control-label" })
+                                            @Html.TextBoxFor(x => x.Address1, new { @class = "form-control", @maxlength = 250 })
+                                            @Html.ValidationMessageFor(x => x.Address1)
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.Address2, new { @class = "control-label" })
+                                            @Html.TextBoxFor(x => x.Address2, new { @class = "form-control", @maxlength = 250 })
+                                            @Html.ValidationMessageFor(x => x.Address2)
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.Description, new { @class = "control-label" })
+                                            @Html.TextBoxFor(x => x.Description, new { @class = "form-control", @maxlength = 300 })
+                                            @Html.ValidationMessageFor(x => x.Description)
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </fieldset>
+                        </div>
+
+
+                        <div class="col-sm-3">
+                            <fieldset>
+                                <legend><i class="icon-image2 mr-5"></i>لوگو</legend>
+                                <div class="col-sm-6">
+                                    <div class="kv-avatar col-sm-offset-4">
+                                        <div class="file-loading">
+                                            <input id="avatar" name="ContentFile" type="file">
+                                        </div>
+                                    </div>
+                                    <div class="kv-avatar-hint"><small>حداکثر حجم مجاز 200 کیلوبایت </small></div>
+                                </div>
+
+                                <div class="clearfix"></div>
+                                <div class="text-danger text-center" id="kv-error"></div>
+                            </fieldset>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Content, new { @class = "control-label" })
+                                @Html.TextBoxFor(x => x.Content, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.Content)
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="text-center">
+                            <button type="submit" id="submit" class="btn btn-primary">ویرایش<i class="icon-pencil7 position-right"></i></button>
+                            <a href="/Admin/Index" class="btn btn-warning" id="btnCancle">بازگشت<i class="icon-undo position-right"></i></a>
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/assest/js/plugins/uploaders/fileinput.min.js"></script>
+    <script src="~/assest/js/plugins/uploaders/fileinput.fa.lang.js"></script>
+<script src="~/assest/js/plugins/editors/summernote/summernote.min.js"></script>
+<script src="~/assest/js/plugins/editors/summernote/lang/summernote-fa-IR.js"></script>
+    <script src="~/Scripts/Page/BaseInformation.js"></script>sss
+}
+

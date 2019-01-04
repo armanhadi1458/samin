@@ -1,0 +1,38 @@
+﻿@model SaminProject.ViewModels.HeaderViewModel
+
+<style>
+    #logo a img{
+        width: 130px;
+        height: 30px;
+    }
+</style>
+
+<div id="logo">
+    <a href="/Home/Index"><img src="data:image/png;base64, @Model.LogoBase64" alt="لوگو" title="لوگو" /></a>
+</div>
+<nav id="nav-menu-container">
+    <ul class="nav-menu">
+        <li class="menu-active"><a href="/Home/Index">خانه</a></li>
+        <li><a href="about.html">در باره ما</a></li>
+        <li class="menu-has-children">
+            <a href="#">محصولات</a>
+            <ul>
+                @foreach (var product in Model.Products)
+                {
+                    <li><a href="@product.Value">@product.Key</a></li>
+                }
+            </ul>
+        </li>
+        <li class="menu-has-children">
+            <a href="#">خدمات</a>
+            <ul>
+                @foreach (var service in Model.Services)
+                {
+                    <li><a href="@service.Value">@service.Key</a></li>
+                }
+            </ul>
+        </li>
+        <li><a href="contact.html">تماس</a></li>
+        <li><a href="elements.html">Elements</a></li>
+    </ul>
+</nav><!-- #nav-menu-container -->

@@ -1,0 +1,130 @@
+﻿@model  IEnumerable<SaminProject.Models.Service>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<style>
+    #tblCustomers thead th:first-child {
+        width: 250px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-white" id="form_panel">
+            <div class="panel-heading">
+                <h6 class="panel-title"><i class="icon-users position-left"></i>لیست خدمات<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+
+                <div class="heading-elements">
+                    <ul class="icons-list">
+                        <li>
+                            <a href="/Service/Create" class="newbtn"><i class="icon-add" aria-hidden="true"></i> خدمت جدید</a>
+                        </li>
+                        <li><a data-action="collapse" class=""></a></li>
+                    </ul>
+                    <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="col-md-12">
+                            <div class="alert alert-success alert-styled-left alert-arrow-left alert-component">
+                                @TempData["Success"]
+                            </div>
+                        </div>
+                    }
+
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="col-md-12">
+                            <div class="alert alert-danger alert-styled-left alert-arrow-left alert-component">
+                                @TempData["Error"]
+                            </div>
+                        </div>
+                    }
+
+                    <table class="table table-hover table-striped" id="tblService">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(m => m.Title) </th>
+                                <th>@Html.DisplayNameFor(m => m.Status) </th>
+                                <th>@Html.DisplayNameFor(m => m.Description) </th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @{
+                                int i = 0;
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Title</td>
+                                        <td>
+                                            @if (item.Status == true)
+                                                        {
+                                                <label class="tgl-checkbox">
+                                                    <input data-id="@item.ID" class="tgl tgl-ios module-checkbox changeact" id="Status_@i" type="checkbox" checked>
+                                                    <label class="tgl-btn" for="Status_@i"></label>
+                                                </label>
+                                            }
+                                            else
+                                            {
+                                                <label class="tgl-checkbox">
+                                                    <input data-id="@item.ID" class="tgl tgl-ios module-checkbox changeact" id="Status_@i" type="checkbox">
+                                                    <label class="tgl-btn" for="Status_@i"></label>
+                                                </label>
+                                            }
+                                        </td>
+                                        <td>@item.Description</td>
+                                        <th class="text-nowrap">
+                                            <ul class="icons-list">
+                                                <li class="text-primary-600 pt-5"><a class="btn_editCustomer" href="/Service/Create/@item.ID"><i class="icon-pencil7"></i></a></li>
+                                                <li class="text-danger-600 pt-5"><a data-toggle="modal" data-id="@item.ID" data-target="#deleteModal"><i class="icon-trash"></i></a></li>
+                                            </ul>
+                                        </th>
+                                    </tr>
+                                 }
+                                i++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <i class="icon-trash"></i>
+                    حذف خدمت
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>آیا از حذف خدمت اطمینان دارید؟</p>
+            </div>
+            <div class="modal-footer">
+                <form action="/Service/Delete" method="post" id="frm_delete" autocomplete="off">
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("Id")
+                    <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+                    <button type="button" class="btn btn-danger" id="btn_delete">حذف خدمت</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Page/ServiceList.js"></script>
+}
+

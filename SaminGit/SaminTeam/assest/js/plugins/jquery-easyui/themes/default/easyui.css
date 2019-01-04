@@ -1,0 +1,470 @@
+
+
+.combo-p .panel-body {
+    overflow: auto;
+    border-top-width: 0;
+    padding: 0;
+}
+
+.panel-body-noheader {
+    border-top-width: 1px;
+}
+
+.panel-body-noborder {
+    border-width: 0px;
+}
+
+.textbox {
+    position: relative;
+    border: 1px solid #95B8E7;
+    background-color: #fff;
+    vertical-align: middle;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    /*border-radius: 5px 5px 5px 5px;*/
+}
+
+    .textbox .textbox-text {
+        max-width: 400px;
+        width: 100% !important;
+        font-size: 12px;
+        border: 0;
+        margin: 0;
+        padding: 6px;
+        white-space: normal;
+        vertical-align: top;
+        outline-style: none;
+        resize: none;
+        -moz-border-radius: 5px 5px 5px 5px;
+        -webkit-border-radius: 5px 5px 5px 5px;
+        /*border-radius: 5px 5px 5px 5px;*/
+    }
+
+    .textbox .textbox-prompt {
+        font-size: 12px;
+        color: #aaa;
+        width: 100% !important;
+        height: 36px;
+        margin-left: 0 !important;
+    }
+
+.textbox-button,
+.textbox-button:hover {
+    position: absolute;
+    top: 0;
+    padding: 0;
+    vertical-align: top;
+    -moz-border-radius: 0 0 0 0;
+    -webkit-border-radius: 0 0 0 0;
+    border-radius: 0 0 0 0;
+}
+
+.textbox-button-right,
+.textbox-button-right:hover {
+    border-width: 0 0 0 1px;
+}
+
+.textbox-button-left,
+.textbox-button-left:hover {
+    border-width: 0 1px 0 0;
+}
+
+.textbox-addon {
+    position: absolute;
+    top: 0;
+    height: 36px;
+}
+
+.textbox-icon {
+    display: inline-block;
+    width: 18px;
+    height: 20px;
+    overflow: hidden;
+    vertical-align: top;
+    background-position: center center;
+    cursor: pointer;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    text-decoration: none;
+    outline-style: none;
+}
+
+.textbox-icon-disabled,
+.textbox-icon-readonly {
+    cursor: default;
+}
+
+.textbox-icon:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100);
+}
+
+.textbox-icon-disabled:hover {
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
+.textbox-focused {
+    -moz-box-shadow: 0 0 3px 0 #95B8E7;
+    -webkit-box-shadow: 0 0 3px 0 #95B8E7;
+    box-shadow: 0 0 3px 0 #95B8E7;
+}
+
+.textbox-invalid {
+    border-color: #ffa8a8;
+    background-color: #fff3f3;
+}
+
+.filebox .textbox-value {
+    vertical-align: top;
+    position: absolute;
+    top: 0;
+    left: -5000px;
+}
+
+.combo {
+    display: inline-block;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+    border-width: 1px;
+    border-style: solid;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+    .combo .combo-text {
+        font-size: 12px;
+        border: 0px;
+        margin: 0;
+        padding: 0px 2px;
+        vertical-align: baseline;
+    }
+
+.combo-arrow {
+    width: 18px;
+    height: 20px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    opacity: 0.9;
+    filter: alpha(opacity=60);
+}
+
+.combo-arrow-hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100);
+}
+
+.combo-panel {
+    overflow: auto;
+}
+
+.combo-arrow {
+    background: url('images/combo_arrow.png') no-repeat center center;
+    background: url('images/chosen-sprite.png') no-repeat 3px 7px;
+    margin-left: 4px;
+    height: 35px !important;
+}
+
+.combo-panel {
+    background-color: #ffffff;
+    padding: 5px 0 !important;
+}
+
+.combo {
+    border-color: #E2E2E2;
+    background-color: #fff;
+    /* width: 100% !important; */
+}
+
+.combo-arrow {
+    /* background-color: #E0ECFF; */
+}
+
+.combo-arrow-hover {
+    /*background-color: #eaf2ff;*/
+}
+
+.combo-arrow:hover {
+    /*background-color: #eaf2ff;*/
+}
+
+.combo .textbox-icon-disabled:hover {
+    cursor: default;
+}
+
+.textbox-invalid {
+    border-color: #ffa8a8;
+    background-color: #fff3f3;
+}
+
+.combobox-item,
+.combobox-group {
+    font-size: 12px;
+    padding: 3px;
+    padding-right: 0px;
+}
+
+.combobox-item-disabled {
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+
+.combobox-gitem {
+    padding-left: 10px;
+}
+
+.combobox-group {
+    font-weight: bold;
+}
+
+.combobox-item-hover {
+    background-color: #eaf2ff;
+    color: #000000;
+}
+
+.combobox-item-selected {
+    background-color: #ffe48d;
+    color: #000000;
+}
+
+
+.textbox {
+    padding: 0;
+    width: 100% !important;
+    height: 36px !important;
+    border-radius: 1px !important;
+}
+
+
+.textbox-icon-disabled .spinner-arrow-up:hover,
+.textbox-icon-disabled .spinner-arrow-down:hover {
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    background-color: #E0ECFF;
+    cursor: default;
+}
+
+.spinner .textbox-icon-disabled {
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
+.spinner-arrow-up {
+    background: url('images/spinner_arrows.png') no-repeat 1px center;
+}
+
+.spinner-arrow-down {
+    background: url('images/spinner_arrows.png') no-repeat -15px center;
+}
+
+.spinner {
+    border-color: #95B8E7;
+}
+
+
+.tree {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+    .tree li {
+        white-space: nowrap;
+    }
+
+        .tree li ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+.tree-node {
+    height: 22px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.tree-hit {
+    cursor: pointer;
+}
+
+.tree-expanded,
+.tree-collapsed,
+.tree-folder,
+.tree-file,
+.tree-checkbox,
+.tree-indent {
+    display: inline-block;
+    width: 16px;
+    height: 18px;
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.tree-expanded {
+    background: url('images/tree_icons.png') no-repeat -18px 0px;
+}
+
+.tree-expanded-hover {
+    background: url('images/tree_icons.png') no-repeat -50px 0px;
+}
+
+.tree-collapsed {
+    background: url('images/tree_icons.png') no-repeat 0px 0px;
+}
+
+.tree-collapsed-hover {
+    background: url('images/tree_icons.png') no-repeat -32px 0px;
+}
+
+.tree-lines .tree-expanded,
+.tree-lines .tree-root-first .tree-expanded {
+    background: url('images/tree_icons.png') no-repeat -144px 0;
+}
+
+.tree-lines .tree-collapsed,
+.tree-lines .tree-root-first .tree-collapsed {
+    background: url('images/tree_icons.png') no-repeat -128px 0;
+}
+
+.tree-lines .tree-node-last .tree-expanded,
+.tree-lines .tree-root-one .tree-expanded {
+    background: url('images/tree_icons.png') no-repeat -80px 0;
+}
+
+.tree-lines .tree-node-last .tree-collapsed,
+.tree-lines .tree-root-one .tree-collapsed {
+    background: url('images/tree_icons.png') no-repeat -64px 0;
+}
+
+.tree-line {
+    background: url('images/tree_icons.png') no-repeat -176px 0;
+}
+
+.tree-join {
+    background: url('images/tree_icons.png') no-repeat -192px 0;
+}
+
+.tree-joinbottom {
+    background: url('images/tree_icons.png') no-repeat -160px 0;
+}
+
+.tree-folder {
+    background: url('images/tree_icons.png') no-repeat -208px 0;
+}
+
+.tree-folder-open {
+    background: url('images/tree_icons.png') no-repeat -224px 0;
+}
+
+.tree-file {
+    background: url('images/tree_icons.png') no-repeat -240px 0;
+}
+
+.tree-loading {
+    background: url('images/loading.gif') no-repeat center center;
+}
+
+.tree-checkbox0 {
+    background: url('images/tree_icons.png') no-repeat -208px -18px;
+}
+
+.tree-checkbox1 {
+    background: url('images/tree_icons.png') no-repeat -224px -18px;
+}
+
+.tree-checkbox2 {
+    background: url('images/tree_icons.png') no-repeat -240px -18px;
+}
+
+.tree-title {
+    font-size: 12px;
+    display: inline-block;
+    text-decoration: none;
+    vertical-align: top;
+    white-space: nowrap;
+    padding: 0 2px;
+    height: 18px;
+    line-height: 18px;
+}
+
+.tree-node-proxy {
+    font-size: 12px;
+    line-height: 20px;
+    padding: 0 2px 0 20px;
+    border-width: 1px;
+    border-style: solid;
+    z-index: 9900000;
+}
+
+.tree-dnd-icon {
+    display: inline-block;
+    position: absolute;
+    width: 16px;
+    height: 18px;
+    left: 2px;
+    top: 50%;
+    margin-top: -9px;
+}
+
+.tree-dnd-yes {
+    background: url('images/tree_icons.png') no-repeat -256px 0;
+}
+
+.tree-dnd-no {
+    background: url('images/tree_icons.png') no-repeat -256px -18px;
+}
+
+.tree-node-top {
+    border-top: 1px dotted red;
+}
+
+.tree-node-bottom {
+    border-bottom: 1px dotted red;
+}
+
+.tree-node-append .tree-title {
+    border: 1px dotted red;
+}
+
+.tree-editor {
+    border: 1px solid #ccc;
+    font-size: 12px;
+    height: 14px !important;
+    height: 18px;
+    line-height: 14px;
+    padding: 1px 2px;
+    width: 80px;
+    position: absolute;
+    top: 0;
+}
+
+.tree-node-proxy {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #95B8E7;
+}
+
+.tree-node-hover {
+    background: #eaf2ff;
+    color: #000000;
+}
+
+.tree-node-selected {
+    background: #E8F5E9;
+    color: #000000;
+}
+
+.validatebox-invalid {
+    border-color: #ffa8a8;
+    background-color: #fff3f3;
+    color: #000;
+}

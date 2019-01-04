@@ -1,0 +1,42 @@
+﻿@model IEnumerable<SaminProject.Models.ProductImage>
+@{
+    Layout = null;
+}
+
+
+
+<table class="table table-hover table-striped" id="table-attachment">
+    <thead>
+        <tr>
+            <th>نام تصویر</th>
+            <th class="text-nowrap">عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td class="text-nowrap">
+                            <span data-toggle="tooltip" data-original-title="نمایش">
+                                <a data-name="@item.Name" data-Base64="@item.Base64" class="attachment-show" data-toggle="modal" data-target="#showDocumentPic"><i class="icon-file-picture2" aria-hidden="true"></i></a>
+                            </span>
+                        <span data-toggle="tooltip" data-original-title="حذف">
+                            <a data-id="@item.ID" class="text-danger-600 attachment-delete" data-toggle="modal" data-target="#deleteDocumentAttachment"><i class="icon-trash" aria-hidden="true"></i></a>
+                        </span>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+        });
+
+</script>
+

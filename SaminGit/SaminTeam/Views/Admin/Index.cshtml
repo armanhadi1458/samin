@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @if (TempData["Success"] != null)
+    {
+        <div class="col-md-12">
+            <div class="alert alert-success alert-styled-left alert-arrow-left alert-component">
+                @TempData["Success"]
+            </div>
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="col-md-12">
+            <div class="alert alert-danger alert-styled-left alert-arrow-left alert-component">
+                @TempData["Error"]
+            </div>
+        </div>
+    }
+</body>
+</html>
