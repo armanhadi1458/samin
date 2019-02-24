@@ -80,36 +80,79 @@
                                         </div>
                                     </div>
 
-                                    @if (Model.Status)
-                                    {
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                @Html.LabelFor(x => x.Status, new { @class = "control-label col-md-4" })
-                                                <div class="col-md-8">
-                                                    <label class="tgl-checkbox">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.Status, new { @class = "control-label col-md-6" })
+                                            <div class="col-md-6">
+                                                <label class="tgl-checkbox">
+                                                    @if (Model.Status)
+                                                    {
                                                         <input type="hidden" name="Status" id="Status" value="true" />
                                                         <input name="StatusShow" class="tgl tgl-ios" id="StatusShow" type="checkbox" checked>
-                                                        <label class="tgl tgl-btn" for="StatusShow"></label>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                @Html.LabelFor(x => x.Status, new { @class = "control-label col-md-4" })
-                                                <div class="col-md-8">
-                                                    <label class="tgl-checkbox">
+                                                    }
+                                                    else
+                                                    {
                                                         <input type="hidden" name="Status" id="Status" value="false" />
                                                         <input name="StatusShow" class="tgl tgl-ios" id="StatusShow" type="checkbox">
-                                                        <label class="tgl tgl-btn" for="StatusShow"></label>
-                                                    </label>
-                                                </div>
+                                                    }
+                                                    <label class="tgl tgl-btn" for="StatusShow"></label>
+                                                </label>
                                             </div>
                                         </div>
-                                    }
+                                    </div>
+
+                                    <div class="clearfix"></div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Icon, new { @class = "col-md-2 control-label required" })
+                                            <div class="col-md-10">
+                                                <input type="hidden" id="IconVal" value="@Model.Icon" />
+                                                <select id="Icon" class="form-control select-icons" name="Icon">
+                                                    <option value="apartment" data-icon="apartment"></option>
+                                                    <option value="bug" data-icon="bug"></option>
+                                                    <option value="rocket" data-icon="rocket"></option>
+                                                    <option value="magic-wand" data-icon="magic-wand"></option>
+                                                    <option value="lighter" data-icon="lighter"></option>
+                                                    <option value="sun" data-icon="sun"></option>
+                                                    <option value="lock" data-icon="lock"></option>
+                                                    <option value="cog" data-icon="cog"></option>
+                                                    <option value="trash" data-icon="trash"></option>
+                                                    <option value="star" data-icon="star"></option>
+                                                    <option value="flag" data-icon="flag"></option>
+                                                    <option value="enter" data-icon="enter"></option>
+                                                    <option value="license" data-icon="license"></option>
+                                                    <option value="cart" data-icon="cart"></option>
+                                                    <option value="diamond" data-icon="diamond"></option>
+                                                    <option value="earth" data-icon="earth"></option>
+                                                    <option value="sync" data-icon="sync"></option>
+                                                    <option value="leaf" data-icon="leaf"></option>
+                                                </select>
+                                                @Html.ValidationMessageFor(model => model.Icon)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.ShowDashboard, new { @class = "control-label col-md-6" })
+                                            <div class="col-md-6">
+                                                <label class="tgl-checkbox">
+                                                    @if (Model.ShowDashboard)
+                                                    {
+                                                        <input type="hidden" name="ShowDashboard" id="ShowDashboard" value="true" />
+                                                        <input name="ShowDashboardFlag" class="tgl tgl-ios" id="ShowDashboardFlag" type="checkbox" checked>
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="hidden" name="ShowDashboard" id="ShowDashboard" value="false" />
+                                                        <input name="ShowDashboardFlag" class="tgl tgl-ios" id="ShowDashboardFlag" type="checkbox">
+                                                    }
+                                                    <label class="tgl tgl-btn" for="ShowDashboardFlag"></label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="clearfix"></div>
 
@@ -123,13 +166,13 @@
                                         </div>
                                     </div>
 
-                                        <div class="col-sm-12">
-                                            <div class="form-group">
-                                                @Html.LabelFor(x => x.Content, new { @class = "control-label" })
-                                                @Html.TextBoxFor(x => x.Content, new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(x => x.Content)
-                                            </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.Content, new { @class = "control-label" })
+                                            @Html.TextBoxFor(x => x.Content, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.Content)
                                         </div>
+                                    </div>
 
                                 </fieldset>
                             </div>

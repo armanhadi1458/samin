@@ -28,6 +28,8 @@ namespace SaminProject.Controllers
             }
 
         }
+
+        [Authenticate]
         public ActionResult Create(int? Id)
         {
             try
@@ -73,6 +75,7 @@ namespace SaminProject.Controllers
                     MemoryStream ms = new MemoryStream();
                     pModel.ContentFile.InputStream.CopyTo(ms);
                     pModel.Logo = ms.ToArray();
+                    pModel.Date = DateTime.Now.Date;
                     unitOfWork.NewsRepository.Insert(pModel);
                 }
                 else
@@ -95,6 +98,8 @@ namespace SaminProject.Controllers
                     model.Title = pModel.Title;
                     model.Content = pModel.Content;
                     model.Status = pModel.Status;
+                    model.ShowDashboard = pModel.ShowDashboard;
+                    model.Writer = pModel.Writer;
                     model.Description = pModel.Description; unitOfWork.NewsRepository.Update(model);
                 }
 
@@ -168,6 +173,51 @@ namespace SaminProject.Controllers
             }
         }
 
+        [HttpPost, Authenticate, ValidateAntiForgeryToken]
+        public ActionResult ChangeDashboardShow(int? Id)
+        {
+            try
+            {
+                var listCount = unitOfWork.NewsRepository.Get(x => x.ShowDashboard == true).Count();
+
+                if (Id == null)
+                {
+                    if (listCount >= 3)
+                        return Json(false, JsonRequestBehavior.AllowGet);
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    var model = unitOfWork.NewsRepository.GetByID(Id);
+                    if (model == null)
+                    {
+                        Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                        return Json(false, System.Net.Mime.MediaTypeNames.Text.Plain);
+                    }
+
+                    if (model.ShowDashboard)
+                        model.ShowDashboard = false;
+                    else
+                    {
+                        if (listCount >= 3)
+                            return Json(false, JsonRequestBehavior.AllowGet);
+
+                        model.ShowDashboard = true;
+                    }
+
+                    unitOfWork.NewsRepository.Update(model);
+                    unitOfWork.Save();
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                return Content(ex.ToString(), System.Net.Mime.MediaTypeNames.Text.Plain);
+            }
+        }
         public string UploadImage()
         {
             HttpPostedFileBase file = null;

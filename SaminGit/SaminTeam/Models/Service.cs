@@ -35,6 +35,14 @@ namespace SaminProject.Models
         [Required]
         public bool Status { get; set; }
 
+        [Display(Name = "نمایش در داشبورد")]
+        [Required]
+        public bool ShowDashboard { get; set; }
+
+        [Display(Name = "آیکون")]
+        [Required(ErrorMessage = "لطفا آیکون را انتخاب نمایید")]
+        public string Icon { get; set; }
+
         public byte[] Logo { get; set; }
 
         [NotMapped]

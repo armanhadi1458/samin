@@ -87,7 +87,34 @@
         } else {
             $('#Status').val(false);
         }
-    })
+    });
+
+    $('#ShowDashboardFlag').on('click', function () {
+        if ($(this).is(':checked')) {
+
+            var form = $('#frm_Product');
+            var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+            $.ajax({
+                url: '/Product/ChangeDashboardShow',
+                method: 'POST',
+                data: { __RequestVerificationToken: token },
+                success: function (data) {
+                    if (!data) {
+                        ShowNotify("error", "حداکثر تعداد نمایش برای داشبورد 3 عدد می باشد که انتخاب شده است ");
+                        $('#ShowDashboardFlag').prop("checked", false);
+                        $('#ShowDashboard').val(false);
+                    }
+                },
+                error: function (error) {
+                    ShowNotify("error", error.responseText);
+                }
+            });
+        } else {
+            $('#ShowDashboard').val(false);
+        }
+    });
+
 
     $('#Content').summernote({
         lang: 'fa-IR',

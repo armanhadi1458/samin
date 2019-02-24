@@ -47,5 +47,32 @@
 
     })
 
+    $('.changeShow').on('click', function () {
+        LoadElement('.panel');
+        var element = $(this)[0];
+        var id = $(this).data('id');
+        var form = $('#frm_delete');
+        var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+        $.ajax({
+            url: '/News/ChangeDashboardShow',
+            type: 'POST',
+            data: { Id: id, __RequestVerificationToken: token },
+            success: function (data) {
+                UnLoadElement('.panel');
+                if (data)
+                    ShowNotify('success', 'تغییر وضعیت با موفقیت به پایان رسید');
+                else {
+                    $(element).prop("checked", false);
+                    ShowNotify("error", "حداکثر تعداد نمایش برای داشبورد 3 عدد می باشد که انتخاب شده است ");
+                }
+            },
+            error: function (xhr) {
+                UnLoadElement('.panel');
+                ShowNotify('error', xhr.responseText);
+            }
+        });
+
+    });
 
 });

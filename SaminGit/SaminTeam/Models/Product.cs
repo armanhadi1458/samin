@@ -37,6 +37,9 @@ namespace SaminProject.Models
         [Required]
         public bool Status { get; set; }
 
+        [Display(Name = "نمایش در داشبورد")]
+        public bool ShowDashboard { get; set; }
+
         public virtual ICollection<ProductImage> ProductImages { get; set; }
 
     }

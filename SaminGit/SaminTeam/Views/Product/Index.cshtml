@@ -53,6 +53,7 @@
                                 <th>@Html.DisplayNameFor(m => m.Title) </th>
                                 <th>@Html.DisplayNameFor(m => m.Status) </th>
                                 <th>@Html.DisplayNameFor(m => m.Description) </th>
+                                <th>@Html.DisplayNameFor(m => m.ShowDashboard) </th>
                                 <th>عملیات</th>
                             </tr>
                         </thead>
@@ -62,32 +63,48 @@
                                 int i = 0;
                                 foreach (var item in Model)
                                 {
-                                    <tr>
-                                        <td>@item.Title</td>
-                                        <td>
-                                            @if (item.Status == true)
-                                                        {
-                                                <label class="tgl-checkbox">
-                                                    <input data-id="@item.ID" class="tgl tgl-ios module-checkbox changeact" id="Status_@i" type="checkbox" checked>
-                                                    <label class="tgl-btn" for="Status_@i"></label>
-                                                </label>
-                                            }
-                                            else
-                                            {
-                                                <label class="tgl-checkbox">
-                                                    <input data-id="@item.ID" class="tgl tgl-ios module-checkbox changeact" id="Status_@i" type="checkbox">
-                                                    <label class="tgl-btn" for="Status_@i"></label>
-                                                </label>
-                                            }
-                                        </td>
-                                        <td>@item.Description</td>
-                                        <th class="text-nowrap">
-                                            <ul class="icons-list">
-                                                <li class="text-primary-600 pt-5"><a class="btn_editCustomer" href="/Product/Create/@item.ID"><i class="icon-pencil7"></i></a></li>
-                                                <li class="text-danger-600 pt-5"><a data-toggle="modal" data-id="@item.ID" data-target="#deleteModal"><i class="icon-trash"></i></a></li>
-                                            </ul>
-                                        </th>
-                                    </tr>
+                            <tr>
+                                <td>@item.Title</td>
+                                <td>
+                                    @if (item.Status == true)
+                                    {
+                                        <label class="tgl-checkbox">
+                                            <input data-id="@item.ID" class="tgl tgl-ios module-checkbox changeact" id="Status_@i" type="checkbox" checked>
+                                            <label class="tgl-btn" for="Status_@i"></label>
+                                        </label>
+                                    }
+                                    else
+                                    {
+                                        <label class="tgl-checkbox">
+                                            <input data-id="@item.ID" class="tgl tgl-ios module-checkbox changeact" id="Status_@i" type="checkbox">
+                                            <label class="tgl-btn" for="Status_@i"></label>
+                                        </label>
+                                    }
+                                </td>
+                                <td>@item.Description</td>
+                                <td>
+                                    @if (item.ShowDashboard == true)
+                                    {
+                                        <label class="tgl-checkbox">
+                                            <input data-id="@item.ID" class="tgl tgl-ios module-checkbox changeShow" id="Show_@i" type="checkbox" checked>
+                                            <label class="tgl-btn" for="Show_@i"></label>
+                                        </label>
+                                    }
+                                    else
+                                    {
+                                        <label class="tgl-checkbox">
+                                            <input data-id="@item.ID" class="tgl tgl-ios module-checkbox changeShow" id="Show_@i" type="checkbox">
+                                            <label class="tgl-btn" for="Show_@i"></label>
+                                        </label>
+                                    }
+                                </td>
+                                <th class="text-nowrap">
+                                    <ul class="icons-list">
+                                        <li class="text-primary-600 pt-5"><a class="btn_editCustomer" href="/Product/Create/@item.ID"><i class="icon-pencil7"></i></a></li>
+                                        <li class="text-danger-600 pt-5"><a data-toggle="modal" data-id="@item.ID" data-target="#deleteModal"><i class="icon-trash"></i></a></li>
+                                    </ul>
+                                </th>
+                            </tr>
                                  }
                                 i++;
                             }

@@ -2588,6 +2588,7 @@
     </Compile>
     <Compile Include="Library\GenericRepository.cs" />
     <Compile Include="Library\UnitOfWork.cs" />
+    <Compile Include="Library\Utility.cs" />
     <Compile Include="Migrations\201812131021023_init.cs" />
     <Compile Include="Migrations\201812131021023_init.Designer.cs">
       <DependentUpon>201812131021023_init.cs</DependentUpon>
@@ -2619,6 +2620,30 @@
     <Compile Include="Migrations\201901031847174_baseInformation-addField.cs" />
     <Compile Include="Migrations\201901031847174_baseInformation-addField.Designer.cs">
       <DependentUpon>201901031847174_baseInformation-addField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902240849241_news_add_prop.cs" />
+    <Compile Include="Migrations\201902240849241_news_add_prop.Designer.cs">
+      <DependentUpon>201902240849241_news_add_prop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902241020111_product_add_prop.cs" />
+    <Compile Include="Migrations\201902241020111_product_add_prop.Designer.cs">
+      <DependentUpon>201902241020111_product_add_prop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902241032568_service_add_prop.cs" />
+    <Compile Include="Migrations\201902241032568_service_add_prop.Designer.cs">
+      <DependentUpon>201902241032568_service_add_prop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902241047488_service_add_propIcon.cs" />
+    <Compile Include="Migrations\201902241047488_service_add_propIcon.Designer.cs">
+      <DependentUpon>201902241047488_service_add_propIcon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902241140212_news_add_propDate.cs" />
+    <Compile Include="Migrations\201902241140212_news_add_propDate.Designer.cs">
+      <DependentUpon>201902241140212_news_add_propDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902241144103_news_add_propWriter.cs" />
+    <Compile Include="Migrations\201902241144103_news_add_propWriter.Designer.cs">
+      <DependentUpon>201902241144103_news_add_propWriter.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthenticateAttribute.cs" />
@@ -2691,6 +2716,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901031847174_baseInformation-addField.resx">
       <DependentUpon>201901031847174_baseInformation-addField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902240849241_news_add_prop.resx">
+      <DependentUpon>201902240849241_news_add_prop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902241020111_product_add_prop.resx">
+      <DependentUpon>201902241020111_product_add_prop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902241032568_service_add_prop.resx">
+      <DependentUpon>201902241032568_service_add_prop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902241047488_service_add_propIcon.resx">
+      <DependentUpon>201902241047488_service_add_propIcon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902241140212_news_add_propDate.resx">
+      <DependentUpon>201902241140212_news_add_propDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902241144103_news_add_propWriter.resx">
+      <DependentUpon>201902241144103_news_add_propWriter.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

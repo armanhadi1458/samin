@@ -83,36 +83,48 @@
                                     </div>
                                 </div>
 
-                                @if (Model != null && Model.Status)
-                                {
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            @Html.LabelFor(x => x.Status, new { @class = "control-label col-md-4" })
-                                            <div class="col-md-8">
-                                                <label class="tgl-checkbox">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.Status, new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            <label class="tgl-checkbox">
+                                                @if (Model.Status)
+                                                {
                                                     <input type="hidden" name="Status" id="Status" value="true" />
                                                     <input name="StatusShow" class="tgl tgl-ios" id="StatusShow" type="checkbox" checked>
-                                                    <label class="tgl tgl-btn" for="StatusShow"></label>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            @Html.LabelFor(x => x.Status, new { @class = "control-label col-md-4" })
-                                            <div class="col-md-8">
-                                                <label class="tgl-checkbox">
+                                                }
+                                                else
+                                                {
                                                     <input type="hidden" name="Status" id="Status" value="false" />
                                                     <input name="StatusShow" class="tgl tgl-ios" id="StatusShow" type="checkbox">
-                                                    <label class="tgl tgl-btn" for="StatusShow"></label>
-                                                </label>
-                                            </div>
+                                                }
+                                                <label class="tgl tgl-btn" for="StatusShow"></label>
+                                            </label>
                                         </div>
                                     </div>
-                                }
+                                </div>
+
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.ShowDashboard, new { @class = "control-label col-md-8" })
+                                        <div class="col-md-4">
+                                            <label class="tgl-checkbox">
+                                                @if (Model.ShowDashboard)
+                                                {
+                                                    <input type="hidden" name="ShowDashboard" id="ShowDashboard" value="true" />
+                                                    <input name="ShowDashboardFlag" class="tgl tgl-ios" id="ShowDashboardFlag" type="checkbox" checked>
+                                                }
+                                                else
+                                                {
+                                                    <input type="hidden" name="ShowDashboard" id="ShowDashboard" value="false" />
+                                                    <input name="ShowDashboardFlag" class="tgl tgl-ios" id="ShowDashboardFlag" type="checkbox">
+                                                }
+                                                <label class="tgl tgl-btn" for="ShowDashboardFlag"></label>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="clearfix"></div>
 

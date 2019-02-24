@@ -1,13 +1,22 @@
 ﻿
 $(document).ready(function () {
 
-    $('.chosen').chosen({
-        width: '100%',
-        no_results_text: 'موردی یافت نشد',
-        placeholder_text_single: 'یک گزینه انتخاب کنید',
-        placeholder_text_multiple: 'انتخاب گزینه های مورد نظر',
-        search_contains: true,
+    $('.select2').select2();
 
+    // Format icon
+    function iconFormat(icon) {
+        var originalOption = icon.element;
+        if (!icon.id) { return icon.text; }
+        var $icon = "<i class='lnr lnr-" + $(icon.element).data('icon') + "'></i>" + icon.text;
+
+        return $icon;
+    }
+
+    // Initialize with options
+    $(".select-icons").select2({
+        templateResult: iconFormat,
+        templateSelection: iconFormat,
+        escapeMarkup: function (m) { return m; }
     });
 
     var $inputLabelAbsolute = $('.label-indicator-absolute input');

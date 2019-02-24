@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SaminProject.Library;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -35,6 +36,10 @@ namespace SaminProject.Models
         [Required]
         public bool Status { get; set; }
 
+        [Display(Name = "نمایش در داشبورد")]
+        [Required]
+        public bool ShowDashboard { get; set; }
+
         public byte[] Logo { get; set; }
 
         [NotMapped]
@@ -48,5 +53,24 @@ namespace SaminProject.Models
                     return string.Empty;
             }
         }
+
+        public DateTime Date { get; set; }
+
+        [NotMapped]
+        public string ShamsiDate
+        {
+            get
+            {
+                if (Date != null)
+                    return Utility.GetShamsiDate(Date);
+                return string.Empty;
+            }
+            set { }
+        }
+
+        [Display(Name = "نویسنده")]
+        [Required(ErrorMessage = "لطفا نام نویسنده را وارد نمایید")]
+        [MaxLength(100, ErrorMessage = "حداکثر 100 کارکتر")]
+        public string Writer { get; set; }
     }
 }
