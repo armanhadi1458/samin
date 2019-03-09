@@ -1,0 +1,17 @@
+﻿@model List<SaminProject.Models.Project>
+@{
+    foreach (var project in Model)
+    {
+
+        <div class="col-lg-4 col-md-4 overlay-container">
+            <a href="~/Content/project-image/@project.FileName" class="img-gal" title="@project.ProjectName">
+                <img class="img-fluid single-project image" src="~/Content/project-image/@project.FileName" alt="@project.OrginalName">
+            </a>
+            <div class="middle">
+                <div class="text"><span>@project.ProjectName</span></div>
+            </div>
+        </div>
+
+    }
+}
+

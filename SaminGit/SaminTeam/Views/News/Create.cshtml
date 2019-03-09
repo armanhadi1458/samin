@@ -85,7 +85,7 @@
                                             @Html.LabelFor(x => x.Status, new { @class = "control-label col-md-6" })
                                             <div class="col-md-6">
                                                 <label class="tgl-checkbox">
-                                                    @if (Model.Status)
+                                                    @if (Model != null && Model.Status)
                                                     {
                                                         <input type="hidden" name="Status" id="Status" value="true" />
                                                         <input name="StatusShow" class="tgl tgl-ios" id="StatusShow" type="checkbox" checked>
@@ -118,7 +118,7 @@
                                             @Html.LabelFor(x => x.ShowDashboard, new { @class = "control-label col-md-6" })
                                             <div class="col-md-6">
                                                 <label class="tgl-checkbox">
-                                                    @if (Model.ShowDashboard)
+                                                    @if (Model != null && Model.ShowDashboard)
                                                     {
                                                         <input type="hidden" name="ShowDashboard" id="ShowDashboard" value="true" />
                                                         <input name="ShowDashboardFlag" class="tgl tgl-ios" id="ShowDashboardFlag" type="checkbox" checked>

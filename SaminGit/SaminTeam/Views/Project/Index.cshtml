@@ -1,0 +1,184 @@
+﻿@model  IEnumerable<SaminProject.Models.Project>
+@{
+    ViewBag.Title = "لیست عکس های پروژه";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 100%;
+        max-width: 700px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-white" id="form_panel">
+            <div class="panel-heading">
+                <h6 class="panel-title"><i class="icon-users position-left"></i>لیست عکس های پروژه ها<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+
+                <div class="heading-elements">
+                    <ul class="icons-list">
+                        <li>
+                            <a href="/Project/Create" class="newbtn"><i class="icon-add" aria-hidden="true"></i> پروژه جدید</a>
+                        </li>
+                        <li><a data-action="collapse" class=""></a></li>
+                    </ul>
+                    <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="col-md-12">
+                            <div class="alert alert-success alert-styled-left alert-arrow-left alert-component">
+                                @TempData["Success"]
+                            </div>
+                        </div>
+                    }
+
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="col-md-12">
+                            <div class="alert alert-danger alert-styled-left alert-arrow-left alert-component">
+                                @TempData["Error"]
+                            </div>
+                        </div>
+                    }
+
+                    <table class="table table-hover table-striped" id="tblProject">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(m => m.ProjectName) </th>
+                                <th>@Html.DisplayNameFor(m => m.OrginalName) </th>
+                                <th>@Html.DisplayNameFor(m => m.ShowDashboard) </th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @{
+                                int i = 0;
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.ProjectName</td>
+                                        <td>@item.OrginalName</td>
+                                        <td>
+                                            @if (item.ShowDashboard == true)
+                                            {
+                                                <label class="tgl-checkbox">
+                                                    <input data-id="@item.ID" class="tgl tgl-ios module-checkbox changeShow" id="Show_@i" type="checkbox" checked>
+                                                    <label class="tgl-btn" for="Show_@i"></label>
+                                                </label>
+                                            }
+                                            else
+                                            {
+                                                <label class="tgl-checkbox">
+                                                    <input data-id="@item.ID" class="tgl tgl-ios module-checkbox changeShow" id="Show_@i" type="checkbox">
+                                                    <label class="tgl-btn" for="Show_@i"></label>
+                                                </label>
+                                            }
+                                        </td>
+                                        <td class="text-nowrap">
+                                            <ul class="icons-list">
+                                                <li class="text-black pt-5"><a data-toggle="modal" data-fileName="@item.FileName" data-target="#showModal"><i class="icon-eye2"></i></a></li>
+                                                <li class="text-primary pt-5"><a data-toggle="modal" data-id="@item.ID"  data-target="#editModal"><i class="icon-pencil7"></i></a></li>
+                                                <li class="text-danger-600 pt-5"><a data-toggle="modal" data-id="@item.ID" data-target="#deleteModal"><i class="icon-trash"></i></a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    i++;
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <i class="icon-trash"></i>
+                    حذف عکس
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>آیا از حذف عکس  پروژه اطمینان دارید؟</p>
+            </div>
+            <div class="modal-footer">
+                <form action="/Project/Delete" method="post" id="frm_delete" autocomplete="off">
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("Id")
+                    <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+                    <button type="button" class="btn btn-danger" id="btn_delete">حذف عکس پروژه</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <i class="icon-pencil7"></i>
+                    ویرایش عکس پروژه
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">نام پروژه</label>
+                                <div class="col-md-10">
+                                    <input id="NewProjectName" class="form-control" maxlength="150" />
+                                    <span id="NewNameProjectValidation" class="text-danger-600"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <form action="/News/Delete" method="post" id="frm_delete" autocomplete="off">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+                    <button type="button" class="btn btn-primary" id="btn_edit">ویرایش</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-center" id="showModal" aria-hidden="true" aria-labelledby="showDocumentPic" role="dialog" tabindex="-1" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title c-red"><i class="icon-file-picture"></i> نمایش عکس<span id="title"></span></h4>
+            </div>
+            <div class="modal-body">
+                <img class="modal-content" id="show-pic" src="" alt="" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Page/ProjectList.js"></script>
+}
+

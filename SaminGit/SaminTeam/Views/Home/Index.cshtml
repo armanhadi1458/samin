@@ -1,4 +1,4 @@
-﻿
+﻿@model SaminProject.ViewModels.IndexViewModel
 @{
     ViewBag.Title = "صفحه اصلی";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -19,125 +19,40 @@
     </div>
 </section>
 <!-- End banner Area -->
-<!-- Start cat Area -->
-<section class="cat-area section-gap" id="feature">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="single-cat d-flex flex-column">
-                    <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-sm inv hb-facebook-inv"><span class="lnr lnr-magic-wand"></span></span></a>
-                    <h4 class="mb-20" style="margin-top: 23px;">Maintenance</h4>
-                    <p>
-                        inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why.
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-cat">
-                    <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-sm inv hb-facebook-inv"><span class="lnr lnr-rocket"></span></span></a>
-                    <h4 class="mt-40 mb-20">Residental Service</h4>
-                    <p>
-                        inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why.
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-cat">
-                    <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-sm inv hb-facebook-inv"><span class="lnr lnr-bug"></span></span></a>
-                    <h4 class="mt-40 mb-20">Commercial Service</h4>
-                    <p>
-                        inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End cat Area -->
-<!-- Start home-about Area -->
-<section class="home-about-area section-gap" id="about">
-    <div class="container">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-lg-8 col-md-12 home-about-left">
-                <h6>Brand new app to blow your mind</h6>
-                <h1>
-                    We’ve made a life <br>
-                    that will change you
-                </h1>
-                <p class="sub">We are here to listen from you deliver exellence</p>
-                <p class="pb-20">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp or incididunt ut labore et dolore magna aliqua. Ut enim ad minim. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.
-                </p>
-                <a class="primary-btn" href="#">Get Started Now</a>
-            </div>
-            <div class="col-lg-4 col-md-12 home-about-right relative">
-                <form class="form-wrap" action="#">
-                    <h4 class="text-white pb-20">Request a Quote</h4>
-                    <div class="form-select" id="service-select" ">
-                        <select>
-                            <option value="1">Select Service</option>
-                            <option value="2">Service One</option>
-                            <option value="3">Service Two</option>
-                            <option value="4">Service Three</option>
-                            <option value="5">Service Four</option>
-                        </select>
-                    </div>
-                    <input type="text" class="form-control" placeholder="name">
-                    <input type="text" class="form-control" placeholder="Phone Number">
-                    <input type="email" class="form-control" placeholder="Email Address">
-                    <textarea name="message" id="" cols="30" rows="5" placeholder="Message" class="form-control"></textarea>
-                    <button class="primary-btn">Request Free Quote</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End home-about Area -->
 <!-- Start service Area -->
-<section class="service-area section-gap" id="service">
+<section class="cat-area section-gap" id="feature">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 pb-30 header-text text-center">
-                <h1 class="mb-10">Our Capturing Market Sectors</h1>
+                <h1 class="mb-10"> خدمات </h1>
                 <p>
-                    Who are in extremely love with eco friendly system..
+                    بهترین خدمات ارایه شده توسط مارا در زیر مشاهده مینمایید برای دیدن کلیه خدمات <a href="/Service/List">اینجا</a> کلیک نمایید ..
                 </p>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4">
-                <div class="single-service">
-                    <div class="thumb">
-                        <img src="/Content/img/s1.jpg" alt="">
-                    </div>
-                    <h4>Automotive Engineering</h4>
-                    <p>
-                        inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct women face higher conduct.
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-service">
-                    <div class="thumb">
-                        <img src="~/Content/img/s2.jpg" alt="">
-                    </div>
-                    <h4>Construction & Engineering</h4>
-                    <p>
-                        inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct women face higher conduct.
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-service">
-                    <div class="thumb">
-                        <img src="~/Content/img/s3.jpg" alt="">
-                    </div>
-                    <h4>Industrial Engineering</h4>
-                    <p>
-                        inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct women face higher conduct.
-                    </p>
-                </div>
-            </div>
+            @foreach (var service in Model.Services)
+            {
+                Html.RenderPartial("_ServicePartial", service);
+            }
+            @{
+                int empty = 3 - Model.Services.Count;
+                if (empty > 0)
+                {
+                    for (int i = 0; i < empty; i++)
+                    {
+                        <div class="col-lg-4">
+                            <div class="single-cat">
+                                <a href="#" class="hb-sm-margin mx-auto d-block"><span class="hb hb-sm inv hb-facebook-inv"><span class="lnr lnr-question-circle"></span></span></a>
+                                <h4 class="mt-40 mb-20">لورم ایپسوم</h4>
+                                <p>
+                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                                </p>
+                            </div>
+                        </div>
+                    }
+                }
+            }
         </div>
     </div>
 </section>
@@ -195,38 +110,70 @@
     </div>
 </section>
 <!-- End faq Area -->
+<!-- Start product Area -->
+<section class="service-area section-gap" id="service">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 pb-30 header-text text-center">
+                <h1 class="mb-10">محصولات</h1>
+                <p>
+                    پر طرفدارترین محصولات مارا در زیر مشاهده مینمایید برای دیدن کلیه محصولات <a href="/Product/List">اینجا</a> کلیک نمایید ..
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            @{
+                Html.RenderPartial("_ProductPartial", Model.Products);
+                int emptyProduct = 3 - Model.Products.Count;
+                if (emptyProduct > 0)
+                {
+                    for (int i = 0; i < emptyProduct; i++)
+                    {
+                        <div class="col-lg-4">
+                            <div class="single-service">
+                                <div class="thumb">
+                                    <img src="/Content/img/s1.jpg" alt="img">
+                                </div>
+                                <h4>لورم ایپسوم</h4>
+                                <p>
+                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                                </p>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </div>
+</section>
+<!-- End product Area -->
 <!-- Start project Area -->
 <section class="project-area section-gap" id="project">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 pb-30 header-text text-center">
-                <h1 class="mb-10">Latest Finished Projects</h1>
+                <h1 class="mb-10">آخرین پروژه ها</h1>
                 <p>
-                    Who are in extremely love with eco friendly system..
+                    آخرین پروژه هایی که توسط ما به اتمام رسیده است در زیر مشاهده مینمایید برای دیدن کلیه پروژه ها <a href="/Project/List">اینجا</a> کلیک نمایید ..
                 </p>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-8 col-md-8">
-                <a href="~/Content/img/p1.jpg" class="img-gal">
-                    <img class="img-fluid single-project" src="~/Content/img/p1.jpg" alt="">
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-4">
-                <a href="~/Content/img/p2.jpg" class="img-gal">
-                    <img class="img-fluid single-project" src="~/Content/img/p2.jpg" alt="">
-                </a>
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <a href="~/Content/img/p3.jpg" class="img-gal">
-                    <img class="img-fluid single-project" src="~/Content/img/p3.jpg" alt="">
-                </a>
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <a href="~/Content/img/p4.jpg" class="img-gal">
-                    <img class="img-fluid single-project" src="~/Content/img/p4.jpg" alt="">
-                </a>
-            </div>
+            @{
+                Html.RenderPartial("_ProjectPartial", Model.Projects);
+                int emptyProject = 6 - Model.Projects.Count;
+                if (emptyProject > 0)
+                {
+                    for (int i = 0; i < emptyProject; i++)
+                    {
+                        <div class="col-lg-4 col-md-4">
+                            <a href="~/Content/img/p4.jpg" class="img-gal">
+                                <img class="img-fluid single-project" src="~/Content/img/p4.jpg" alt="">
+                            </a>
+                        </div>
+                    }
+                }
+            }
         </div>
     </div>
 </section>
@@ -306,88 +253,64 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 pb-30 header-text">
-                <h1>Latest posts from our Blog</h1>
+                <h1>تازه ترین اخبار</h1>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> labore  et dolore magna aliqua.
+                    تازه ترین خبرهای مارا در زیر مشاهده مینمایید برای دیدن کلیه اخبار <a href="/News/List">اینجا</a> کلیک نمایید ..
                 </p>
             </div>
         </div>
         <div class="row">
-            <div class="single-blog col-lg-4 col-md-4">
-                <div class="thumb">
-                    <img class="f-img img-fluid mx-auto" src="~/Content/img/b1.jpg" alt="">
-                </div>
-                <div class="bottom d-flex justify-content-between align-items-center flex-wrap">
-                    <div>
-                        <img class="img-fluid" src="~/Content/img/user.png" alt="">
-                        <a href="#"><span>Mark Wiens</span></a>
-                    </div>
-                    <div class="meta">
-                        13th Dec
-                        <span class="lnr lnr-heart"></span> 15
-                        <span class="lnr lnr-bubble"></span> 04
-                    </div>
-                </div>
-                <a href="#">
-                    <h4>Portable Fashion for young women</h4>
-                </a>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exea.
-                </p>
-            </div>
-            <div class="single-blog col-lg-4 col-md-4">
-                <div class="thumb">
-                    <img class="f-img img-fluid mx-auto" src="~/Content/img/b2.jpg" alt="">
-                </div>
-                <div class="bottom d-flex justify-content-between align-items-center flex-wrap">
-                    <div>
-                        <img class="img-fluid" src="~/Content/img/user.png" alt="">
-                        <a href="#"><span>Mark Wiens</span></a>
-                    </div>
-                    <div class="meta">
-                        13th Dec
-                        <span class="lnr lnr-heart"></span> 15
-                        <span class="lnr lnr-bubble"></span> 04
-                    </div>
-                </div>
-                <a href="#">
-                    <h4>Portable Fashion for young women</h4>
-                </a>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exea.
-                </p>
-            </div>
-            <div class="single-blog col-lg-4 col-md-4">
-                <div class="thumb">
-                    <img class="f-img img-fluid mx-auto" src="~/Content/img/b3.jpg" alt="">
-                </div>
-                <div class="bottom d-flex justify-content-between align-items-center flex-wrap">
-                    <div>
-                        <img class="img-fluid" src="~/Content/img/user.png" alt="">
-                        <a href="#"><span>Mark Wiens</span></a>
-                    </div>
-                    <div class="meta">
-                        13th Dec
-                        <span class="lnr lnr-heart"></span> 15
-                        <span class="lnr lnr-bubble"></span> 04
-                    </div>
-                </div>
-                <a href="#">
-                    <h4>Portable Fashion for young women</h4>
-                </a>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exea.
-                </p>
-            </div>
-
-
+            @{
+                Html.RenderPartial("_NewsPartial", Model.News);
+                int emptyNews = 3 - Model.News.Count;
+                if (emptyNews > 0)
+                {
+                    for (int i = 0; i < emptyNews; i++)
+                    {
+                        <div class="single-blog col-lg-4 col-md-4">
+                            <div class="thumb">
+                                <img class="f-img img-fluid mx-auto" src="~/Content/img/b1.jpg" alt="">
+                            </div>
+                            <div class="bottom d-flex justify-content-between align-items-center flex-wrap">
+                                <div>
+                                    <span>نوشته شده توسط : آرمان هادی</span>
+                                </div>
+                                <div class="meta">
+                                    در تاریخ : 15 فروردین 1398
+                                </div>
+                            </div>
+                            <a href="#">
+                                <h4>لورم ایپسوم</h4>
+                            </a>
+                            <p>
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                            </p>
+                        </div>
+                    }
+                }
+            }
         </div>
     </div>
 </section>
 <!-- end blog Area -->
 <!-- start footer Area -->
 
+@section Scripts{
 
+    <script>
+        $(document).ready(function () {
+            $('.product').on('click', function () {
+                var id = $(this).data('id');
+                if (id != '' && id != undefined)
+                    window.location.href = "/Product/Detail/" + id;
+            });
 
+            $('.single-blog').on('click', function () {
+                var id = $(this).data('id');
+                if (id != '' && id != undefined)
+                    window.location.href = "/News/Detail/" + id;
+            });
+        })
+    </script>
 
-
+}

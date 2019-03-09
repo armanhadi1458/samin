@@ -1,0 +1,20 @@
+﻿@model List<SaminProject.Models.Product>
+
+@{
+    foreach (var product in Model)
+    {
+        <div class="col-lg-4">
+            <div class="single-service">
+                <div data-id="@product.ID" class="product">
+                    <div class="thumb">
+                        <img src="data:image/png;base64, @product.ProductImages.FirstOrDefault().Base64" alt="@product.ProductImages.FirstOrDefault().Name">
+                    </div>
+                    <h4>@product.Title</h4>
+                </div>
+                <p>
+                    @product.Description
+                </p>
+            </div>
+        </div>
+    }
+}

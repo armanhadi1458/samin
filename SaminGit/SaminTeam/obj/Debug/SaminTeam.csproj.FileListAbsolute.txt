@@ -181,3 +181,5 @@ D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.serv
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.service_add_propIcon.resources
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.news_add_propDate.resources
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.news_add_propWriter.resources
+D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.Add_Project.resources
+D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.Add_Project_ShowDashBoard.resources

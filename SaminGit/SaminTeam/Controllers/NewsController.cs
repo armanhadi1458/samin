@@ -72,9 +72,17 @@ namespace SaminProject.Controllers
                 }
                 if (pModel.ID == null)
                 {
-                    MemoryStream ms = new MemoryStream();
-                    pModel.ContentFile.InputStream.CopyTo(ms);
-                    pModel.Logo = ms.ToArray();
+                    //pModel.Logo = Utility.GetResizedImage(pModel.ContentFile, 360, 220);
+                    using (Stream inputStream = pModel.ContentFile.InputStream)
+                    {
+                        MemoryStream memoryStream = inputStream as MemoryStream;
+                        if (memoryStream == null)
+                        {
+                            memoryStream = new MemoryStream();
+                            inputStream.CopyTo(memoryStream);
+                        }
+                        pModel.Logo = memoryStream.ToArray();
+                    }
                     pModel.Date = DateTime.Now.Date;
                     unitOfWork.NewsRepository.Insert(pModel);
                 }
@@ -89,9 +97,16 @@ namespace SaminProject.Controllers
                     }
                     if (pModel.ContentFile != null)
                     {
-                        MemoryStream ms = new MemoryStream();
-                        pModel.ContentFile.InputStream.CopyTo(ms);
-                        model.Logo = ms.ToArray();
+                        using (Stream inputStream = pModel.ContentFile.InputStream)
+                        {
+                            MemoryStream memoryStream = inputStream as MemoryStream;
+                            if (memoryStream == null)
+                            {
+                                memoryStream = new MemoryStream();
+                                inputStream.CopyTo(memoryStream);
+                            }
+                            model.Logo = memoryStream.ToArray();
+                        }
                     }
 
                     //Edit DataBase Data

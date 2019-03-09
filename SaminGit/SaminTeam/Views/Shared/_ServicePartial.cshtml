@@ -1,0 +1,13 @@
+﻿@model SaminProject.Models.Service
+    @{ 
+        var ClassName = $"lnr lnr-{Model.Icon}";
+    }
+<div class="col-lg-4">
+    <div class="single-cat">
+        <a href="/Service/Detail/@Model.ID" class="hb-sm-margin mx-auto d-block"><span class="hb hb-sm inv hb-facebook-inv"><span class="@ClassName"></span></span></a>
+        <h4 class="mt-40 mb-20">@Model.Title</h4>
+        <p>
+            @Model.Description
+        </p>
+    </div>
+</div>

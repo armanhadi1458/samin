@@ -29,7 +29,7 @@
 
     if (image != '' && image != undefined) {
         $(".file-default-preview > img").attr("src", "data:image/jpg;base64," + image);
-        $("#submit").html('ویرایش <i class="icon-pencil7 position-right"></i>')
+        $("#submit").html('ویرایش <i class="icon-pencil7 position-right"></i>');
     }
 
     $('#frm_info').submit(function () {

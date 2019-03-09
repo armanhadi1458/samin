@@ -16,7 +16,19 @@ namespace SaminProject.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            try
+            {
+                IndexViewModel model = new IndexViewModel();
+                model.Services = unitOfWork.ServiceRepository.Get(x => x.ShowDashboard == true).Take(3).ToList();
+                model.Products = unitOfWork.ProductRepository.Get(x => x.ShowDashboard == true).Take(3).ToList();
+                model.News = unitOfWork.NewsRepository.Get(x => x.ShowDashboard == true).Take(3).ToList();
+                model.Projects = unitOfWork.ProjectRepository.Get(x => x.ShowDashboard == true).Take(6).ToList();
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
         }
 
         public ActionResult _HeaderPartial()

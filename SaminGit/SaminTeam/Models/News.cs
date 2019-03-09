@@ -62,7 +62,7 @@ namespace SaminProject.Models
             get
             {
                 if (Date != null)
-                    return Utility.GetShamsiDate(Date);
+                    return Utility.GetPersianDateString(Date);
                 return string.Empty;
             }
             set { }

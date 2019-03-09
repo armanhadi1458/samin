@@ -83,9 +83,17 @@ namespace SaminProject.Controllers
                         foreach (var image in pModel.Images)
                         {
                             ProductImage img = new ProductImage();
-                            MemoryStream ms = new MemoryStream();
-                            image.InputStream.CopyTo(ms);
-                            img.Image = ms.ToArray();
+                            //img.Image = Utility.GetResizedImage(image, 360, 250);
+                            using (Stream inputStream = image.InputStream)
+                            {
+                                MemoryStream memoryStream = inputStream as MemoryStream;
+                                if (memoryStream == null)
+                                {
+                                    memoryStream = new MemoryStream();
+                                    inputStream.CopyTo(memoryStream);
+                                }
+                                img.Image = memoryStream.ToArray();
+                            }
                             img.MimeType = image.ContentType;
                             img.Name = image.FileName;
                             img.ProductID = pModel.ID;
@@ -107,9 +115,17 @@ namespace SaminProject.Controllers
                         foreach (var image in pModel.Images)
                         {
                             ProductImage img = new ProductImage();
-                            MemoryStream ms = new MemoryStream();
-                            image.InputStream.CopyTo(ms);
-                            img.Image = ms.ToArray();
+                            //img.Image = Utility.GetResizedImage(image, 360, 250);
+                            using (Stream inputStream = image.InputStream)
+                            {
+                                MemoryStream memoryStream = inputStream as MemoryStream;
+                                if (memoryStream == null)
+                                {
+                                    memoryStream = new MemoryStream();
+                                    inputStream.CopyTo(memoryStream);
+                                }
+                                img.Image = memoryStream.ToArray();
+                            }
                             img.MimeType = image.ContentType;
                             img.Name = image.FileName;
                             img.ProductID = model.ID;

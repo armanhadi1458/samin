@@ -1,4 +1,4 @@
-
+﻿
 $(document).ready(function(){
 	"use strict";
 
@@ -21,8 +21,14 @@ $(document).ready(function(){
 
     $('.img-gal').magnificPopup({
         type: 'image',
+        tClose: 'بستن', // Alt text on close button
+        tLoading: 'در حال بارگذاری ...',
         gallery:{
-        enabled:true
+            enabled: true,
+            arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>', // markup of an arrow button
+            tPrev: 'تصویر قبلی', // title for left button
+            tNext: 'تصویر بعدی', // title for right button
+            tCounter: '<span class="mfp-counter">%curr% از %total%</span>' // markup of counter
         }
     });
 

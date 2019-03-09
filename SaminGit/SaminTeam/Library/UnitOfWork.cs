@@ -16,6 +16,7 @@ namespace SaminProject.Library
         private GenericRepository<Service> serviceRepository;
         private GenericRepository<Product> productRepository;
         private GenericRepository<ProductImage> productImageRepository;
+        private GenericRepository<Project> projectRepository;
         public GenericRepository<User> UserRepository
         {
             get
@@ -102,6 +103,19 @@ namespace SaminProject.Library
                     this.productImageRepository = new GenericRepository<ProductImage>(context);
                 }
                 return productImageRepository;
+            }
+        }
+
+        public GenericRepository<Project> ProjectRepository
+        {
+            get
+            {
+
+                if (this.projectRepository == null)
+                {
+                    this.projectRepository = new GenericRepository<Project>(context);
+                }
+                return projectRepository;
             }
         }
 

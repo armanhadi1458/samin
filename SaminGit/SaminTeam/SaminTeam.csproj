@@ -2491,6 +2491,8 @@
     <Content Include="Content\js\vendor\bootstrap.min.js" />
     <Content Include="Content\js\vendor\jquery-2.2.4.min.js" />
     <Content Include="Content\js\waypoints.min.js" />
+    <Content Include="Content\project-image\9471ec8a-2473-4480-a8cb-a73314e2f877.png" />
+    <Content Include="Content\project-image\b5d98cd8-c57b-472c-9107-b50d0bdb4425.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -2566,6 +2568,8 @@
     <Content Include="Scripts\Page\BaseInformation.js" />
     <Content Include="Scripts\Page\Customer.js" />
     <Content Include="Scripts\Page\Product.js" />
+    <Content Include="Scripts\Page\Project.js" />
+    <Content Include="Scripts\Page\ProjectList.js" />
     <Content Include="Scripts\Page\Service.js" />
     <Content Include="Scripts\Page\News.js" />
     <Content Include="Scripts\Page\ProductList.js" />
@@ -2582,6 +2586,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2645,6 +2650,14 @@
     <Compile Include="Migrations\201902241144103_news_add_propWriter.Designer.cs">
       <DependentUpon>201902241144103_news_add_propWriter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903081852192_Add_Project.cs" />
+    <Compile Include="Migrations\201903081852192_Add_Project.Designer.cs">
+      <DependentUpon>201903081852192_Add_Project.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903081919167_Add_Project_ShowDashBoard.cs" />
+    <Compile Include="Migrations\201903081919167_Add_Project_ShowDashBoard.Designer.cs">
+      <DependentUpon>201903081919167_Add_Project_ShowDashBoard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthenticateAttribute.cs" />
     <Compile Include="Models\BaseInformation.cs" />
@@ -2654,11 +2667,13 @@
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductImage.cs" />
+    <Compile Include="Models\Project.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\FooterViewModel.cs" />
     <Compile Include="ViewModels\HeaderViewModel.cs" />
+    <Compile Include="ViewModels\IndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -2681,6 +2696,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_HeaderPartial.cshtml" />
     <Content Include="Views\Shared\_FooterPartial.cshtml" />
+    <Content Include="Views\Shared\_ServicePartial.cshtml" />
+    <Content Include="Views\Shared\_ProductPartial.cshtml" />
+    <Content Include="Views\Shared\_NewsPartial.cshtml" />
+    <Content Include="Views\Project\Create.cshtml" />
+    <Content Include="Views\Project\Index.cshtml" />
+    <Content Include="Views\Shared\_ProjectPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2734,6 +2755,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902241144103_news_add_propWriter.resx">
       <DependentUpon>201902241144103_news_add_propWriter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903081852192_Add_Project.resx">
+      <DependentUpon>201903081852192_Add_Project.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903081919167_Add_Project_ShowDashBoard.resx">
+      <DependentUpon>201903081919167_Add_Project_ShowDashBoard.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

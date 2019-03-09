@@ -34,7 +34,7 @@ namespace SaminProject.Controllers
             try
             {
                 if (Id == null)
-                    return View();
+                    return View(new Service());
                 else
                 {
                     Service model = unitOfWork.ServiceRepository.GetByID(Id);
