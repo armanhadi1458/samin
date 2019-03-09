@@ -24,7 +24,7 @@ namespace SaminProject.Models
         public DbSet<Service> Services { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
-
+        public DbSet<PageInformation> PageInformations { get; set; }
         public DbSet<Project> Projects { get; set; }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 

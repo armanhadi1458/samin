@@ -72,6 +72,10 @@ namespace SaminProject.Controllers
                 model.Instagram = pModel.Instagram;
                 model.Telegram = pModel.Telegram;
                 model.FaceBook = pModel.FaceBook;
+                model.TotalAgency = pModel.TotalAgency;
+                model.TotalClient = pModel.TotalClient;
+                model.TotalEmployees = pModel.TotalEmployees;
+                model.TotalProject = pModel.TotalProject;
 
                 unitOfWork.BaseInformationRepository.Update(model);
                 unitOfWork.Save();

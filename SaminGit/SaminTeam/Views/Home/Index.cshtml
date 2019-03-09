@@ -5,15 +5,21 @@
 }
 
 <!-- start banner Area -->
-<section class="banner-area relative" id="home">
+<section class="banner-area relative" id="home" style="background: url(@Model.HeaderImage)">
     <div class="overlay overlay-bg"></div>
     <div class="container">
         <div class="row d-flex align-items-center justify-content-center">
             <div class="about-content col-lg-12">
-                <h1 class="text-white">
-                    گروه صنعتی تجاری ثمین
-                </h1>
-                <p class="text-white link-nav">خوش آمدید</p>
+                @if (!string.IsNullOrWhiteSpace(Model.DashboardTitle))
+                {
+                    <h1 class="text-white">@Model.DashboardTitle</h1>
+                    <p class="text-white link-nav">@Model.DashboardSubTitle</p>
+                }
+                else
+                {
+                    <h1 class="text-white">گروه صنعتی تجاری ثمین</h1>
+                    <p class="text-white link-nav">خوش آمدید</p>
+                }
             </div>
         </div>
     </div>
@@ -24,10 +30,20 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 pb-30 header-text text-center">
-                <h1 class="mb-10"> خدمات </h1>
-                <p>
-                    بهترین خدمات ارایه شده توسط مارا در زیر مشاهده مینمایید برای دیدن کلیه خدمات <a href="/Service/List">اینجا</a> کلیک نمایید ..
-                </p>
+                @if (!string.IsNullOrWhiteSpace(Model.ServiceTitle))
+                {
+                    <h1 class="mb-10">@Model.ServiceTitle</h1>
+                    <p>
+                        @Model.ServiceSubTitle
+                    </p>
+                }
+                else
+                {
+                    <h1 class="mb-10"> خدمات </h1>
+                    <p>
+                        بهترین خدمات ارایه شده توسط مارا در زیر مشاهده مینمایید برای دیدن کلیه خدمات <a href="/Service/List">اینجا</a> کلیک نمایید ..
+                    </p>
+                }
             </div>
         </div>
         <div class="row">
@@ -67,9 +83,9 @@
                     <div class="circle">
                         <div class="inner"></div>
                     </div>
-                    <h5><span class="counter">2</span>K+</h5>
+                    <h5><span class="counter">@Model.TotalProject</span></h5>
                     <p>
-                        Projects Completed
+                        پروژه ها تکمیل شده
                     </p>
                 </div>
             </div>
@@ -78,9 +94,9 @@
                     <div class="circle">
                         <div class="inner"></div>
                     </div>
-                    <h5><span class="counter">5.5</span>K</h5>
+                    <h5><span class="counter">@Model.TotalClient</span></h5>
                     <p>
-                        Total Employees
+                        مشترکین ماهیانه
                     </p>
                 </div>
             </div>
@@ -89,9 +105,9 @@
                     <div class="circle">
                         <div class="inner"></div>
                     </div>
-                    <h5 class="counter">959</h5>
+                    <h5 class="counter">@Model.TotalEmployees</h5>
                     <p>
-                        Happy Clients
+                        کارمندان متخصص
                     </p>
                 </div>
             </div>
@@ -100,9 +116,9 @@
                     <div class="circle">
                         <div class="inner"></div>
                     </div>
-                    <h5 class="counter">367</h5>
+                    <h5 class="counter">@Model.TotalAgency</h5>
                     <p>
-                        Tickets Submited
+                        تعداد نمایندگی
                     </p>
                 </div>
             </div>
@@ -115,10 +131,20 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 pb-30 header-text text-center">
-                <h1 class="mb-10">محصولات</h1>
-                <p>
-                    پر طرفدارترین محصولات مارا در زیر مشاهده مینمایید برای دیدن کلیه محصولات <a href="/Product/List">اینجا</a> کلیک نمایید ..
-                </p>
+                @if (!string.IsNullOrWhiteSpace(Model.ProductTitle))
+                {
+                    <h1 class="mb-10">@Model.ProductTitle</h1>
+                    <p>
+                        @Model.ProductSubTitle
+                    </p>
+                }
+                else
+                {
+                    <h1 class="mb-10">محصولات</h1>
+                    <p>
+                        پر طرفدارترین محصولات مارا در زیر مشاهده مینمایید برای دیدن کلیه محصولات <a href="/Product/List">اینجا</a> کلیک نمایید ..
+                    </p>
+                }
             </div>
         </div>
         <div class="row">
@@ -152,10 +178,20 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 pb-30 header-text text-center">
-                <h1 class="mb-10">آخرین پروژه ها</h1>
-                <p>
-                    آخرین پروژه هایی که توسط ما به اتمام رسیده است در زیر مشاهده مینمایید برای دیدن کلیه پروژه ها <a href="/Project/List">اینجا</a> کلیک نمایید ..
-                </p>
+                @if (!string.IsNullOrWhiteSpace(Model.ProjectTitle))
+                {
+                    <h1 class="mb-10">@Model.ProjectTitle</h1>
+                    <p>
+                        @Model.ProjectSubTitle
+                    </p>
+                }
+                else
+                {
+                    <h1 class="mb-10">آخرین پروژه ها</h1>
+                    <p>
+                        آخرین پروژه هایی که توسط ما به اتمام رسیده است در زیر مشاهده مینمایید برای دیدن کلیه پروژه ها <a href="/Project/List">اینجا</a> کلیک نمایید ..
+                    </p>
+                }
             </div>
         </div>
         <div class="row">
@@ -253,10 +289,20 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 pb-30 header-text">
-                <h1>تازه ترین اخبار</h1>
-                <p>
-                    تازه ترین خبرهای مارا در زیر مشاهده مینمایید برای دیدن کلیه اخبار <a href="/News/List">اینجا</a> کلیک نمایید ..
-                </p>
+                @if (!string.IsNullOrWhiteSpace(Model.NewsTitle))
+                {
+                    <h1>@Model.NewsTitle</h1>
+                    <p>
+                        @Model.NewsSubTitle
+                    </p>
+                }
+                else
+                {
+                    <h1>تازه ترین اخبار</h1>
+                    <p>
+                        تازه ترین خبرهای مارا در زیر مشاهده مینمایید برای دیدن کلیه اخبار <a href="/News/List">اینجا</a> کلیک نمایید ..
+                    </p>
+                }
             </div>
         </div>
         <div class="row">

@@ -2567,6 +2567,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Page\BaseInformation.js" />
     <Content Include="Scripts\Page\Customer.js" />
+    <Content Include="Scripts\Page\PageInformation.js" />
     <Content Include="Scripts\Page\Product.js" />
     <Content Include="Scripts\Page\Project.js" />
     <Content Include="Scripts\Page\ProjectList.js" />
@@ -2585,6 +2586,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\PageInformationController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
@@ -2658,6 +2660,18 @@
     <Compile Include="Migrations\201903081919167_Add_Project_ShowDashBoard.Designer.cs">
       <DependentUpon>201903081919167_Add_Project_ShowDashBoard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903091101313_BaseInformation_Add_Total.cs" />
+    <Compile Include="Migrations\201903091101313_BaseInformation_Add_Total.Designer.cs">
+      <DependentUpon>201903091101313_BaseInformation_Add_Total.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903091132282_Add_PageInformation.cs" />
+    <Compile Include="Migrations\201903091132282_Add_PageInformation.Designer.cs">
+      <DependentUpon>201903091132282_Add_PageInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903091137390_Add_PageInformation_Uniq.cs" />
+    <Compile Include="Migrations\201903091137390_Add_PageInformation_Uniq.Designer.cs">
+      <DependentUpon>201903091137390_Add_PageInformation_Uniq.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthenticateAttribute.cs" />
     <Compile Include="Models\BaseInformation.cs" />
@@ -2665,6 +2679,7 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DBContext.cs" />
     <Compile Include="Models\News.cs" />
+    <Compile Include="Models\PageInformation.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductImage.cs" />
     <Compile Include="Models\Project.cs" />
@@ -2702,6 +2717,7 @@
     <Content Include="Views\Project\Create.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Shared\_ProjectPartial.cshtml" />
+    <Content Include="Views\PageInformation\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2711,6 +2727,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Pages-image\" />
     <Folder Include="Content\Uploads\" />
   </ItemGroup>
   <ItemGroup>
@@ -2761,6 +2778,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903081919167_Add_Project_ShowDashBoard.resx">
       <DependentUpon>201903081919167_Add_Project_ShowDashBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903091101313_BaseInformation_Add_Total.resx">
+      <DependentUpon>201903091101313_BaseInformation_Add_Total.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903091132282_Add_PageInformation.resx">
+      <DependentUpon>201903091132282_Add_PageInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903091137390_Add_PageInformation_Uniq.resx">
+      <DependentUpon>201903091137390_Add_PageInformation_Uniq.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

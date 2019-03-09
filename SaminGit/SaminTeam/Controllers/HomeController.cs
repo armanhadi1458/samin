@@ -19,10 +19,50 @@ namespace SaminProject.Controllers
             try
             {
                 IndexViewModel model = new IndexViewModel();
+                var BaseInfo = unitOfWork.BaseInformationRepository.GetByID(1);
                 model.Services = unitOfWork.ServiceRepository.Get(x => x.ShowDashboard == true).Take(3).ToList();
                 model.Products = unitOfWork.ProductRepository.Get(x => x.ShowDashboard == true).Take(3).ToList();
                 model.News = unitOfWork.NewsRepository.Get(x => x.ShowDashboard == true).Take(3).ToList();
                 model.Projects = unitOfWork.ProjectRepository.Get(x => x.ShowDashboard == true).Take(6).ToList();
+                model.TotalAgency = BaseInfo.TotalAgency;
+                model.TotalClient = BaseInfo.TotalClient;
+                model.TotalEmployees = BaseInfo.TotalEmployees;
+                model.TotalProject = BaseInfo.TotalProject;
+                List<PageInformation> pages = unitOfWork.PageInformationRepository.Get().ToList();
+                if (pages != null && pages.Count != 0)
+                {
+                    var service = pages.Where(x => x.UniqueTitle.ToLower() == "services").FirstOrDefault();
+                    if (service != null)
+                    {
+                        model.ServiceTitle = service.Title;
+                        model.ServiceSubTitle = service.SubTitle;
+                    }
+                    var product = pages.Where(x => x.UniqueTitle.ToLower() == "products").FirstOrDefault();
+                    if (product != null)
+                    {
+                        model.ProductTitle = product.Title;
+                        model.ProductSubTitle = product.SubTitle;
+                    }
+                    var news = pages.Where(x => x.UniqueTitle.ToLower() == "news").FirstOrDefault();
+                    if (news != null)
+                    {
+                        model.NewsTitle = news.Title;
+                        model.NewsSubTitle = news.SubTitle;
+                    }
+                    var project = pages.Where(x => x.UniqueTitle.ToLower() == "projects").FirstOrDefault();
+                    if (project != null)
+                    {
+                        model.ProjectTitle = project.Title;
+                        model.ProjectSubTitle = project.SubTitle;
+                    }
+                    var dashbord = pages.Where(x => x.UniqueTitle.ToLower() == "dashboard").FirstOrDefault();
+                    if (dashbord != null)
+                    {
+                        model.HeaderImage = $"/Content/Pages-image/{dashbord.FileName}";
+                        model.DashboardTitle = dashbord.Title;
+                        model.DashboardSubTitle = dashbord.SubTitle;
+                    }
+                }
                 return View(model);
             }
             catch (Exception ex)

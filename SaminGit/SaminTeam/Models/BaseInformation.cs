@@ -83,6 +83,25 @@ namespace SaminProject.Models
         [RegularExpression(@"^[^<>]*$", ErrorMessage = "استفاده از کاراکتر(های) غیر مجاز")]
         public string Description { get; set; }
 
+        [Display(Name = "تعداد پروژه ها")]
+        [MaxLength(300, ErrorMessage = "حداکثر 300 کارکتر")]
+        [RegularExpression(@"^[^<>]*$", ErrorMessage = "استفاده از کاراکتر(های) غیر مجاز")]
+        public string TotalProject { get; set; }
+
+        [Display(Name = "تعداد کارکنان")]
+        [MaxLength(300, ErrorMessage = "حداکثر 300 کارکتر")]
+        [RegularExpression(@"^[^<>]*$", ErrorMessage = "استفاده از کاراکتر(های) غیر مجاز")]
+        public string TotalEmployees { get; set; }
+
+        [Display(Name = "تعداد مشترکین")]
+        [MaxLength(300, ErrorMessage = "حداکثر 300 کارکتر")]
+        [RegularExpression(@"^[^<>]*$", ErrorMessage = "استفاده از کاراکتر(های) غیر مجاز")]
+        public string TotalClient { get; set; }
+
+        [Display(Name = "تعداد نمایندگی")]
+        [MaxLength(300, ErrorMessage = "حداکثر 300 کارکتر")]
+        [RegularExpression(@"^[^<>]*$", ErrorMessage = "استفاده از کاراکتر(های) غیر مجاز")]
+        public string TotalAgency { get; set; }
     }
 
 }

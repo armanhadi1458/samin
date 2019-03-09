@@ -161,7 +161,6 @@ D:\Test\SaminGit\samin\SaminGit\SaminTeam\bin\System.Web.Webpages.Deployment.xml
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\bin\System.Web.Webpages.Razor.xml
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\bin\System.Web.Helpers.xml
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\bin\System.Web.Mvc.xml
-D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminTeam.csprojAssemblyReference.cache
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.init.resources
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.addservice.resources
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.addproduct.resources
@@ -170,11 +169,6 @@ D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.Chan
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.EditBaseInformation.resources
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.EditService.resources
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.baseInformationaddField.resources
-D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminTeam.csproj.GenerateResource.cache
-D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminTeam.csproj.CoreCompileInputs.cache
-D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminTeam.csproj.CopyComplete
-D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.dll
-D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.pdb
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.news_add_prop.resources
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.product_add_prop.resources
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.service_add_prop.resources
@@ -183,3 +177,12 @@ D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.news
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.news_add_propWriter.resources
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.Add_Project.resources
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.Add_Project_ShowDashBoard.resources
+D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.BaseInformation_Add_Total.resources
+D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.Add_PageInformation.resources
+D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.Add_PageInformation_Uniq.resources
+D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminTeam.csproj.GenerateResource.cache
+D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminTeam.csproj.CoreCompileInputs.cache
+D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminTeam.csproj.CopyComplete
+D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.dll
+D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.pdb
+D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminTeam.csprojAssemblyReference.cache

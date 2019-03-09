@@ -89,6 +89,35 @@
                                     <div class="clearfix"></div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
+                                            @Html.LabelFor(x => x.TotalProject, new { @class = "control-label" })
+                                            @Html.TextBoxFor(x => x.TotalProject, new { @class = "form-control Phone", @maxlength = 50 })
+                                            @Html.ValidationMessageFor(x => x.TotalProject)
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.TotalEmployees, new { @class = "control-label" })
+                                            @Html.TextBoxFor(x => x.TotalEmployees, new { @class = "form-control Phone", @maxlength = 50 })
+                                            @Html.ValidationMessageFor(x => x.TotalEmployees)
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.TotalClient, new { @class = "control-label" })
+                                            @Html.TextBoxFor(x => x.TotalClient, new { @class = "form-control Phone", @maxlength = 50 })
+                                            @Html.ValidationMessageFor(x => x.TotalClient)
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.TotalAgency, new { @class = "control-label" })
+                                            @Html.TextBoxFor(x => x.TotalAgency, new { @class = "form-control Phone", @maxlength = 50 })
+                                            @Html.ValidationMessageFor(x => x.TotalAgency)
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
                                             @Html.LabelFor(x => x.Mobile, new { @class = "control-label" })
                                             @Html.TextBoxFor(x => x.Mobile, new { @class = "form-control Phone" })
                                             @Html.ValidationMessageFor(x => x.Mobile)
