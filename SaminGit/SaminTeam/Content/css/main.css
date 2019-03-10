@@ -3617,3 +3617,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 /***********************************/
+
+#service-header:hover, #product-header:hover, #project-header:hover, #news-header:hover {
+    cursor: pointer;
+}

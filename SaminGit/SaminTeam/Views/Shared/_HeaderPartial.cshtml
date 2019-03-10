@@ -13,9 +13,9 @@
 <nav id="nav-menu-container">
     <ul class="nav-menu">
         <li class="menu-active"><a href="/Home/Index">خانه</a></li>
-        <li><a href="about.html">در باره ما</a></li>
+        <li><a href="/AboutUs/Index">در باره ما</a></li>
         <li class="menu-has-children">
-            <a href="#">محصولات</a>
+            <a href="/Product/List">محصولات</a>
             <ul>
                 @foreach (var product in Model.Products)
                 {
@@ -24,7 +24,7 @@
             </ul>
         </li>
         <li class="menu-has-children">
-            <a href="#">خدمات</a>
+            <a href="/Service/List">خدمات</a>
             <ul>
                 @foreach (var service in Model.Services)
                 {
@@ -32,7 +32,7 @@
                 }
             </ul>
         </li>
-        <li><a href="contact.html">تماس</a></li>
-        <li><a href="elements.html">Elements</a></li>
+        <li><a href="/Contact/Index">تماس</a></li>
+        @*<li><a href="elements.html">Elements</a></li>*@
     </ul>
 </nav><!-- #nav-menu-container -->

@@ -10,6 +10,19 @@ $(document).ready(function () {
         }
     });
 
+    $("#showModal").on('show.bs.modal', function (e) {
+        $('#show-pic').attr("src", "");
+        var btn = $(e.relatedTarget);
+        var fileName = btn.data("filename");
+
+        if (fileName == null || fileName == '') {
+            $("#showModal").modal("hide");
+        }
+
+        $('#show-pic').attr("src", "/Content/Pages-image/" + fileName);
+
+    });
+
     var modalTemplate = '<div class="modal-dialog modal-lg" role="document">\n' +
         '  <div class="modal-content">\n' +
         '    <div class="modal-header">\n' +
@@ -82,20 +95,132 @@ $(document).ready(function () {
                 "</div>",
             modal: modalTemplate
         },
-        initialCaption: "فایلی انتخاب نشده است",
         previewZoomButtonClasses: previewZoomButtonClasses,
         previewZoomButtonIcons: previewZoomButtonIcons,
         fileActionSettings: fileActionSettings,
         maxFileSize: 3000
     };
 
-    $("#Image_DashBoard").fileinput($.extend(uploaderSetting, { elErrorContainer: "#errorBlock_DashBoard" }));
-    $("#Image_Services").fileinput($.extend(uploaderSetting, { elErrorContainer: "#errorBlock_Services" }));
-    $("#Image_Products").fileinput($.extend(uploaderSetting, { elErrorContainer: "#errorBlock_Products" }));
-    $("#Image_Projects").fileinput($.extend(uploaderSetting, { elErrorContainer: "#errorBlock_Projects" }));
-    $("#Image_News").fileinput($.extend(uploaderSetting, { elErrorContainer: "#errorBlock_News" }));
-    $("#Image_Contact").fileinput($.extend(uploaderSetting, { elErrorContainer: "#errorBlock_Contact" }));
+    $("#Image_DashBoard").fileinput($.extend(uploaderSetting, { elErrorContainer: "#errorBlock_DashBoard", initialCaption: ($('#FileName_DashBoard').val() === '') ? "فایلی انتخاب نشده است" : "1 فایل انتخاب شده است" }));
+    $("#Image_Services").fileinput($.extend(uploaderSetting, { elErrorContainer: "#errorBlock_Services", initialCaption: ($('#FileName_Services').val() === '') ? "فایلی انتخاب نشده است" : "1 فایل انتخاب شده است" }));
+    $("#Image_Products").fileinput($.extend(uploaderSetting, { elErrorContainer: "#errorBlock_Products", initialCaption: ($('#FileName_Products').val() === '') ? "فایلی انتخاب نشده است" : "1 فایل انتخاب شده است" }));
+    $("#Image_Projects").fileinput($.extend(uploaderSetting, { elErrorContainer: "#errorBlock_Projects", initialCaption: ($('#FileName_Projects').val() === '') ? "فایلی انتخاب نشده است" : "1 فایل انتخاب شده است" }));
+    $("#Image_News").fileinput($.extend(uploaderSetting, { elErrorContainer: "#errorBlock_News", initialCaption: ($('#FileName_News').val() === '') ? "فایلی انتخاب نشده است" : "1 فایل انتخاب شده است" }));
+    $("#Image_Contact").fileinput($.extend(uploaderSetting, { elErrorContainer: "#errorBlock_Contact", initialCaption: ($('#FileName_Contact').val() === '') ? "فایلی انتخاب نشده است" : "1 فایل انتخاب شده است" }));
+    $("#Image_AboutMe").fileinput($.extend(uploaderSetting, { elErrorContainer: "#errorBlock_AboutMe", initialCaption: ($('#FileName_AboutMe').val() === '') ? "فایلی انتخاب نشده است" : "1 فایل انتخاب شده است" }));
 
+
+    $('#Image_DashBoard').on('fileselect', function (event, numFiles, label) {
+        if ($('#FileName_DashBoard').val() != '') {
+            $('#ShowBox_DashBoard').hide();
+            var elem = document.getElementById("ShowBox_DashBoard").previousElementSibling;
+            $(elem).removeClass('col-sm-10').addClass('col-sm-12');
+        }
+    });
+
+    $('#Image_DashBoard').on('fileclear', function (event) {
+        if ($('#FileName_DashBoard').val() != '') {
+            $('#ShowBox_DashBoard').show();
+            var elem = document.getElementById("ShowBox_DashBoard").previousElementSibling;
+            $(elem).removeClass('col-sm-12').addClass('col-sm-10');
+        }
+    });
+
+    $('#Image_Services').on('fileselect', function (event, numFiles, label) {
+        if ($('#FileName_Services').val() != '') {
+            $('#ShowBox_Services').hide();
+            var elem = document.getElementById("ShowBox_Services").previousElementSibling;
+            $(elem).removeClass('col-sm-10').addClass('col-sm-12');
+        }
+    });
+
+    $('#Image_Services').on('fileclear', function (event) {
+        if ($('#FileName_Services').val() != '') {
+            $('#ShowBox_Services').show();
+            var elem = document.getElementById("ShowBox_Services").previousElementSibling;
+            $(elem).removeClass('col-sm-12').addClass('col-sm-10');
+        }
+    });
+
+    $('#Image_Products').on('fileselect', function (event, numFiles, label) {
+        if ($('#FileName_Products').val() != '') {
+            $('#ShowBox_Products').hide();
+            var elem = document.getElementById("ShowBox_Products").previousElementSibling;
+            $(elem).removeClass('col-sm-10').addClass('col-sm-12');
+        }
+    });
+
+    $('#Image_Products').on('fileclear', function (event) {
+        if ($('#FileName_Products').val() != '') {
+            $('#ShowBox_Products').show();
+            var elem = document.getElementById("ShowBox_Products").previousElementSibling;
+            $(elem).removeClass('col-sm-12').addClass('col-sm-10');
+        }
+    });
+
+    $('#Image_Projects').on('fileselect', function (event, numFiles, label) {
+        if ($('#FileName_Projects').val() != '') {
+            $('#ShowBox_Projects').hide();
+            var elem = document.getElementById("ShowBox_Projects").previousElementSibling;
+            $(elem).removeClass('col-sm-10').addClass('col-sm-12');
+        }
+    });
+
+    $('#Image_Projects').on('fileclear', function (event) {
+        if ($('#FileName_Projects').val() != '') {
+            $('#ShowBox_Projects').show();
+            var elem = document.getElementById("ShowBox_Projects").previousElementSibling;
+            $(elem).removeClass('col-sm-12').addClass('col-sm-10');
+        }
+    });
+
+    $('#Image_News').on('fileselect', function (event, numFiles, label) {
+        if ($('#FileName_News').val() != '') {
+            $('#ShowBox_News').hide();
+            var elem = document.getElementById("ShowBox_News").previousElementSibling;
+            $(elem).removeClass('col-sm-10').addClass('col-sm-12');
+        }
+    });
+
+    $('#Image_News').on('fileclear', function (event) {
+        if ($('#FileName_News').val() != '') {
+            $('#ShowBox_News').show();
+            var elem = document.getElementById("ShowBox_News").previousElementSibling;
+            $(elem).removeClass('col-sm-12').addClass('col-sm-10');
+        }
+    });
+
+    $('#Image_Contact').on('fileselect', function (event, numFiles, label) {
+        if ($('#FileName_Contact').val() != '') {
+            $('#ShowBox_Contact').hide();
+            var elem = document.getElementById("ShowBox_Contact").previousElementSibling;
+            $(elem).removeClass('col-sm-10').addClass('col-sm-12');
+        }
+    });
+
+    $('#Image_Contact').on('fileclear', function (event) {
+        if ($('#FileName_Contact').val() != '') {
+            $('#ShowBox_Contact').show();
+            var elem = document.getElementById("ShowBox_Contact").previousElementSibling;
+            $(elem).removeClass('col-sm-12').addClass('col-sm-10');
+        }
+    });
+
+    $('#Image_AboutMe').on('fileselect', function (event, numFiles, label) {
+        if ($('#FileName_AboutMe').val() != '') {
+            $('#ShowBox_AboutMe').hide();
+            var elem = document.getElementById("ShowBox_AboutMe").previousElementSibling;
+            $(elem).removeClass('col-sm-10').addClass('col-sm-12');
+        }
+    });
+
+    $('#Image_AboutMe').on('fileclear', function (event) {
+        if ($('#FileName_AboutMe').val() != '') {
+            $('#ShowBox_AboutMe').show();
+            var elem = document.getElementById("ShowBox_AboutMe").previousElementSibling;
+            $(elem).removeClass('col-sm-12').addClass('col-sm-10');
+        }
+    });
 
     $('.submit').on('click', function () {
 

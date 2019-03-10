@@ -37,20 +37,22 @@ namespace SaminProject.Models
         {
             get
             {
-                switch (UniqueTitle)
+                switch (UniqueTitle.ToLower())
                 {
-                    case "DashBoard":
+                    case "dashboard":
                         return "صفحه اصلی";
-                    case "Services":
+                    case "services":
                         return "خدمات";
-                    case "Products":
+                    case "products":
                         return "محصولات";
-                    case "Projects":
+                    case "projects":
                         return "پروژه ها";
-                    case "News":
+                    case "news":
                         return "اخبار";
-                    case "Contact":
+                    case "contact":
                         return "تماس";
+                    case "aboutme":
+                        return "درباره ما";
                     default:
                         return "نا معتبر";
                 }

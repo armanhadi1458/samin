@@ -5,7 +5,7 @@
 }
 
 <!-- start banner Area -->
-<section class="banner-area relative" id="home" style="background: url(@Model.HeaderImage)">
+<section class="banner-area relative" id="home" style="background: url(@Model.HeaderImage) center !important;">
     <div class="overlay overlay-bg"></div>
     <div class="container">
         <div class="row d-flex align-items-center justify-content-center">
@@ -29,7 +29,7 @@
 <section class="cat-area section-gap" id="feature">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12 pb-30 header-text text-center">
+            <div class="col-md-12 pb-30 header-text text-center" id="service-header">
                 @if (!string.IsNullOrWhiteSpace(Model.ServiceTitle))
                 {
                     <h1 class="mb-10">@Model.ServiceTitle</h1>
@@ -130,7 +130,7 @@
 <section class="service-area section-gap" id="service">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12 pb-30 header-text text-center">
+            <div class="col-md-12 pb-30 header-text text-center" id="product-header">
                 @if (!string.IsNullOrWhiteSpace(Model.ProductTitle))
                 {
                     <h1 class="mb-10">@Model.ProductTitle</h1>
@@ -177,7 +177,7 @@
 <section class="project-area section-gap" id="project">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8 pb-30 header-text text-center">
+            <div class="col-md-8 pb-30 header-text text-center" id="project-header">
                 @if (!string.IsNullOrWhiteSpace(Model.ProjectTitle))
                 {
                     <h1 class="mb-10">@Model.ProjectTitle</h1>
@@ -288,7 +288,7 @@
 <section class="blog-area section-gap" id="blog">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12 pb-30 header-text">
+            <div class="col-md-12 pb-30 header-text" id="news-header">
                 @if (!string.IsNullOrWhiteSpace(Model.NewsTitle))
                 {
                     <h1>@Model.NewsTitle</h1>
@@ -355,6 +355,22 @@
                 var id = $(this).data('id');
                 if (id != '' && id != undefined)
                     window.location.href = "/News/Detail/" + id;
+            });
+
+            $('#service-header').on('click', function () {
+                window.location.href = "/Service/List";
+            });
+
+            $('#product-header').on('click', function () {
+                window.location.href = "/Product/List";
+            });
+
+            $('#project-header').on('click', function () {
+                window.location.href = "/Project/List";
+            });
+
+            $('#news-header').on('click', function () {
+                window.location.href = "/News/List";
             });
         })
     </script>

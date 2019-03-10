@@ -4,6 +4,15 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<style>
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 100%;
+        max-width: 700px;
+    }
+</style>
+
 @section PageHeader{
     <div class="page-header page-header-default">
         <div class="page-header-content">
@@ -37,6 +46,12 @@
             </div>
 
             <div class="panel-body">
+
+                <div class="alert alert-info alert-styled-left alert-arrow-left alert-component">
+                    <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+                    <h6 class="alert-heading text-semibold">تصویر زمینه</h6>
+                    برای اینکه تصویر زمینه با کیفیت نشان داده شود از عکس هایی با سایز 1080×1920 استفاده نمایید.
+                </div>
 
                 @if (TempData["Success"] != null)
                 {
@@ -83,6 +98,7 @@
                                     <form id="frm_@item.UniqueTitle">
                                         @Html.AntiForgeryToken()
                                         <input type="hidden" name="ID" id="ID_@item.UniqueTitle" value="@item.ID" />
+                                        <input type="hidden" id="FileName_@item.UniqueTitle" value="@item.FileName" />
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label class="control-label">تیتر</label>
@@ -97,13 +113,30 @@
                                                 <span class="subtitle-validation text-danger-600" id="subtitlevalidation_@item.UniqueTitle"></span>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12">
-                                            <div class="form-group">
-                                                <label class="control-label">تصویر زمینه</label>
-                                                <input name="HeaderImage" id="Image_@item.UniqueTitle" type="file" class="file-input-ajax" />
-                                                <div id="errorBlock_@item.UniqueTitle" class="help-block"></div>
+                                        @if (!string.IsNullOrWhiteSpace(item.FileName))
+                                        {
+                                            <div class="col-sm-10">
+                                                <div class="form-group">
+                                                    <label class="control-label">تصویر زمینه</label>
+                                                    <input name="HeaderImage" id="Image_@item.UniqueTitle" type="file" class="file-input-ajax" />
+                                                    <div id="errorBlock_@item.UniqueTitle" class="help-block"></div>
+                                                </div>
                                             </div>
-                                        </div>
+
+                                            <div class="col-sm-2" style="margin-top:27px;" id="ShowBox_@item.UniqueTitle">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-filename="@item.FileName" data-target="#showModal">نمایش تصویر زمینه</button>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">تصویر زمینه</label>
+                                                    <input name="HeaderImage" id="Image_@item.UniqueTitle" type="file" class="file-input-ajax" />
+                                                    <div id="errorBlock_@item.UniqueTitle" class="help-block"></div>
+                                                </div>
+                                            </div>
+                                        }
                                         <div class="col-sm-12 text-center mt-20">
                                             <button type="button" class="btn btn-primary submit">ویرایش</button>
                                             <a href="/admin/index" class="btn btn-warning">بازگشت</a>
@@ -118,6 +151,7 @@
                                     <form id="frm_@item.UniqueTitle">
                                         @Html.AntiForgeryToken()
                                         <input type="hidden" name="ID" id="ID_@item.UniqueTitle" value="@item.ID" />
+                                        <input type="hidden" id="FileName_@item.UniqueTitle" value="@item.FileName" />
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label class="control-label">تیتر</label>
@@ -132,13 +166,32 @@
                                                 <span class="subtitle-validation text-danger-600" id="subtitlevalidation_@item.UniqueTitle"></span>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12">
-                                            <div class="form-group">
-                                                <label class="control-label">تصویر زمینه</label>
-                                                <input name="HeaderImage" id="Image_@item.UniqueTitle" type="file" class="file-input-ajax" />
-                                                <div id="errorBlock_@item.UniqueTitle" class="help-block"></div>
+
+                                        @if (!string.IsNullOrWhiteSpace(item.FileName))
+                                        {
+                                            <div class="col-sm-10">
+                                                <div class="form-group">
+                                                    <label class="control-label">تصویر زمینه</label>
+                                                    <input name="HeaderImage" id="Image_@item.UniqueTitle" type="file" class="file-input-ajax" />
+                                                    <div id="errorBlock_@item.UniqueTitle" class="help-block"></div>
+                                                </div>
                                             </div>
-                                        </div>
+
+                                            <div class="col-sm-2" style="margin-top:27px;" id="ShowBox_@item.UniqueTitle">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-filename="@item.FileName" data-target="#showModal">نمایش تصویر زمینه</button>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">تصویر زمینه</label>
+                                                    <input name="HeaderImage" id="Image_@item.UniqueTitle" type="file" class="file-input-ajax" />
+                                                    <div id="errorBlock_@item.UniqueTitle" class="help-block"></div>
+                                                </div>
+                                            </div>
+                                        }
+
                                         <div class="col-sm-12 text-center mt-20">
                                             <button type="button" class="btn btn-primary submit">ویرایش</button>
                                             <a href="/admin/index" class="btn btn-warning">بازگشت</a>
@@ -151,6 +204,22 @@
                     }
                 </div>
 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-center" id="showModal" aria-hidden="true" aria-labelledby="showDocumentPic" role="dialog" tabindex="-1" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title c-red"><i class="icon-file-picture"></i> نمایش تصویر زمینه<span id="title"></span></h4>
+            </div>
+            <div class="modal-body">
+                <img class="modal-content" id="show-pic" src="" alt="" />
             </div>
         </div>
     </div>

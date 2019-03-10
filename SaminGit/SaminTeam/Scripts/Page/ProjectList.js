@@ -81,7 +81,6 @@
 
     });
 
-
     $('.changeShow').on('click', function () {
         LoadElement('.panel');
         var element = $(this)[0];
