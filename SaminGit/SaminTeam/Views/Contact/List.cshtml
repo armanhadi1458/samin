@@ -1,0 +1,170 @@
+﻿@model  IEnumerable<SaminProject.Models.Contact>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<style>
+    #tblmessages thead th:first-child {
+        width: 250px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-white" id="form_panel">
+            <div class="panel-heading">
+                <h6 class="panel-title"><i class="icon-users position-left"></i>لیست پیام ها<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+
+                <div class="heading-elements">
+                    <ul class="icons-list">
+                        <li><a data-action="collapse" class=""></a></li>
+                    </ul>
+                    <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="col-md-12">
+                            <div class="alert alert-success alert-styled-left alert-arrow-left alert-component">
+                                @TempData["Success"]
+                            </div>
+                        </div>
+                    }
+
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="col-md-12">
+                            <div class="alert alert-danger alert-styled-left alert-arrow-left alert-component">
+                                @TempData["Error"]
+                            </div>
+                        </div>
+                    }
+
+                    <table class="table table-hover table-striped" id="tblContact">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(m => m.FullName) </th>
+                                <th>@Html.DisplayNameFor(m => m.Email) </th>
+                                <th>@Html.DisplayNameFor(m => m.ShamsiDate) </th>
+                                <th>@Html.DisplayNameFor(m => m.Subject) </th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @{
+                                int i = 0;
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.FullName</td>
+                                        <td>@item.Email</td>
+                                        <td>@item.ShamsiDate</td>
+                                        <td>@item.ShamsiDate</td>
+                                        <td class="text-nowrap">
+                                            <ul class="icons-list">
+                                                <li class="text-black pt-5"><a class="btn_showmessage" data-id="@item.ID" data-toggle="modal" data-target="#showModal"><i class="icon-eye2"></i></a></li>
+                                                <li class="text-danger-600 pt-5"><a data-toggle="modal" data-id="@item.ID" data-target="#deleteModal"><i class="icon-trash"></i></a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    i++;
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <i class="icon-trash"></i>
+                    حذف پیام
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>آیا از حذف پیام اطمینان دارید؟</p>
+            </div>
+            <div class="modal-footer">
+                <form action="/Contact/Delete" method="post" id="frm_delete" autocomplete="off">
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("Id")
+                    <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+                    <button type="button" class="btn btn-danger" id="btn_delete">حذف پیام</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <i class="icon-envelop5"></i>
+                    پیام
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-horizontal">
+                        <div class="col-sm-12">
+                            <label class="col-sm-3 control-label">نام ثبت کننده: </label>
+                            <div class="col-sm-9">
+                                <p class="form-control-static" id="FullName"></p>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3 control-label">تاریخ ثبت: </label>
+                            <div class="col-sm-9">
+                                <p class="form-control-static fa-num" id="Date"></p>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3 control-label">موضوع: </label>
+                            <div class="col-sm-9">
+                                <p class="form-control-static" id="Subject"></p>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom:15px;">
+                            <div class="col-sm-12">
+                                <fieldset>
+                                    <legend>متن پیام</legend>
+
+                                    <div class="col-sm-12 fa-num" id="Message">
+
+                                    </div>
+
+                                </fieldset>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-raised wavs-effect" data-dismiss="modal">بستن</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Scripts/Page/ContactList.js"></script>
+}
+

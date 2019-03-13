@@ -130,6 +130,7 @@
                                             @Html.ValidationMessageFor(x => x.Telegram)
                                         </div>
                                     </div>
+                                    <div class="clearfix"></div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             @Html.LabelFor(x => x.Instagram, new { @class = "control-label" })
@@ -142,6 +143,43 @@
                                             @Html.LabelFor(x => x.FaceBook, new { @class = "control-label" })
                                             @Html.TextBoxFor(x => x.FaceBook, new { @class = "form-control", @maxlength = 100 })
                                             @Html.ValidationMessageFor(x => x.FaceBook)
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.Country, new { @class = "control-label" })
+                                            @Html.TextBoxFor(x => x.Country, new { @class = "form-control", @maxlength = 50 })
+                                            @Html.ValidationMessageFor(x => x.Country)
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.City, new { @class = "control-label" })
+                                            @Html.TextBoxFor(x => x.City, new { @class = "form-control", @maxlength = 50 })
+                                            @Html.ValidationMessageFor(x => x.City)
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.Longtiude, new { @class = "control-label" })
+                                            @Html.TextBoxFor(x => x.Longtiude, new { @class = "form-control Location", @maxlength = 25 })
+                                            @Html.ValidationMessageFor(x => x.Longtiude)
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.Latiude, new { @class = "control-label" })
+                                            @Html.TextBoxFor(x => x.Latiude, new { @class = "form-control Location", @maxlength = 25 })
+                                            @Html.ValidationMessageFor(x => x.Latiude)
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x => x.WorkTime, new { @class = "control-label" })
+                                            @Html.TextBoxFor(x => x.WorkTime, new { @class = "form-control", @maxlength = 50 })
+                                            @Html.ValidationMessageFor(x => x.WorkTime)
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>

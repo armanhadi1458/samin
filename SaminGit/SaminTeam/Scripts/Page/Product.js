@@ -105,6 +105,9 @@
                         $('#ShowDashboardFlag').prop("checked", false);
                         $('#ShowDashboard').val(false);
                     }
+                    else {
+                        $('#ShowDashboard').val(true);
+                    }
                 },
                 error: function (error) {
                     ShowNotify("error", error.responseText);

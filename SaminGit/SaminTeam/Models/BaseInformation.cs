@@ -19,6 +19,17 @@ namespace SaminProject.Models
         [RegularExpression(@"^[^<>]*$", ErrorMessage = "استفاده از کاراکتر(های) غیر مجاز")]
         public string Title { get; set; }
 
+        [Display(Name = "کشور")]
+        [MaxLength(50, ErrorMessage = "حداکثر مجاز 50 کارکتر می باشد")]
+        [Required(ErrorMessage = "وارد کردن کشور الزامی است")]
+        [RegularExpression(@"^[^<>]*$", ErrorMessage = "استفاده از کاراکتر(های) غیر مجاز")]
+        public string Country { get; set; }
+
+        [Display(Name = "شهر")]
+        [MaxLength(50, ErrorMessage = "حداکثر مجاز 50 کارکتر می باشد")]
+        [Required(ErrorMessage = "وارد کردن شهر الزامی است")]
+        [RegularExpression(@"^[^<>]*$", ErrorMessage = "استفاده از کاراکتر(های) غیر مجاز")]
+        public string City { get; set; }
 
         [Display(Name = "آدرس")]
         [RegularExpression(@"^[^<>]*$", ErrorMessage = "استفاده از کاراکتر(های) غیر مجاز")]
@@ -102,6 +113,21 @@ namespace SaminProject.Models
         [MaxLength(300, ErrorMessage = "حداکثر 300 کارکتر")]
         [RegularExpression(@"^[^<>]*$", ErrorMessage = "استفاده از کاراکتر(های) غیر مجاز")]
         public string TotalAgency { get; set; }
+
+        [Display(Name = "طول جغرافیایی")]
+        [MaxLength(25, ErrorMessage = "حداکثر 25 کارکتر")]
+        [RegularExpression(@"^[^<>]*$", ErrorMessage = "استفاده از کاراکتر(های) غیر مجاز")]
+        public string Longtiude { get; set; }
+
+        [Display(Name = "عرض جغرافیایی")]
+        [MaxLength(25, ErrorMessage = "حداکثر 25 کارکتر")]
+        [RegularExpression(@"^[^<>]*$", ErrorMessage = "استفاده از کاراکتر(های) غیر مجاز")]
+        public string Latiude { get; set; }
+
+        [Display(Name = "ساعت کاری")]
+        [MaxLength(100, ErrorMessage = "حداکثر 100 کارکتر")]
+        [RegularExpression(@"^[^<>]*$", ErrorMessage = "استفاده از کاراکتر(های) غیر مجاز")]
+        public string WorkTime { get; set; }
     }
 
 }

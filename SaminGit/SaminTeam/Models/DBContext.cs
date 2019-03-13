@@ -27,6 +27,7 @@ namespace SaminProject.Models
         public DbSet<PageInformation> PageInformations { get; set; }
         public DbSet<Project> Projects { get; set; }
 
+        public DbSet<Contact> Contacts { get; set; }
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 

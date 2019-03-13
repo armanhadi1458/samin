@@ -2495,6 +2495,16 @@
     <Content Include="Content\project-image\b5d98cd8-c57b-472c-9107-b50d0bdb4425.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\tether\css\tether-theme-arrows-dark.css" />
+    <Content Include="Content\tether\css\tether-theme-arrows-dark.min.css" />
+    <Content Include="Content\tether\css\tether-theme-arrows.css" />
+    <Content Include="Content\tether\css\tether-theme-arrows.min.css" />
+    <Content Include="Content\tether\css\tether-theme-basic.css" />
+    <Content Include="Content\tether\css\tether-theme-basic.min.css" />
+    <Content Include="Content\tether\css\tether.css" />
+    <Content Include="Content\tether\css\tether.min.css" />
+    <Content Include="Content\tether\js\tether.js" />
+    <Content Include="Content\tether\js\tether.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -2566,6 +2576,7 @@
     <Content Include="Scripts\Layout.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Page\BaseInformation.js" />
+    <Content Include="Scripts\Page\ContactList.js" />
     <Content Include="Scripts\Page\Customer.js" />
     <Content Include="Scripts\Page\PageInformation.js" />
     <Content Include="Scripts\Page\Product.js" />
@@ -2584,6 +2595,7 @@
     <Compile Include="Controllers\AboutUsController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseInformationController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -2673,10 +2685,23 @@
     <Compile Include="Migrations\201903091137390_Add_PageInformation_Uniq.Designer.cs">
       <DependentUpon>201903091137390_Add_PageInformation_Uniq.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903130857364_Add_BaseInfo_city....cs" />
+    <Compile Include="Migrations\201903130857364_Add_BaseInfo_city....Designer.cs">
+      <DependentUpon>201903130857364_Add_BaseInfo_city....cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903131319309_Add_ContactModel.cs" />
+    <Compile Include="Migrations\201903131319309_Add_ContactModel.Designer.cs">
+      <DependentUpon>201903131319309_Add_ContactModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903131347326_Add_ContactModel_Date.cs" />
+    <Compile Include="Migrations\201903131347326_Add_ContactModel_Date.Designer.cs">
+      <DependentUpon>201903131347326_Add_ContactModel_Date.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthenticateAttribute.cs" />
     <Compile Include="Models\BaseInformation.cs" />
     <Compile Include="Models\ChangePassViewModel.cs" />
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DBContext.cs" />
     <Compile Include="Models\News.cs" />
@@ -2688,6 +2713,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AboutUsViewModel.cs" />
+    <Compile Include="ViewModels\ContactViewModel.cs" />
     <Compile Include="ViewModels\FooterViewModel.cs" />
     <Compile Include="ViewModels\HeaderViewModel.cs" />
     <Compile Include="ViewModels\IndexViewModel.cs" />
@@ -2721,6 +2747,8 @@
     <Content Include="Views\Shared\_ProjectPartial.cshtml" />
     <Content Include="Views\PageInformation\Index.cshtml" />
     <Content Include="Views\AboutUs\Index.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Contact\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2790,6 +2818,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903091137390_Add_PageInformation_Uniq.resx">
       <DependentUpon>201903091137390_Add_PageInformation_Uniq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903130857364_Add_BaseInfo_city....resx">
+      <DependentUpon>201903130857364_Add_BaseInfo_city....cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903131319309_Add_ContactModel.resx">
+      <DependentUpon>201903131319309_Add_ContactModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903131347326_Add_ContactModel_Date.resx">
+      <DependentUpon>201903131347326_Add_ContactModel_Date.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

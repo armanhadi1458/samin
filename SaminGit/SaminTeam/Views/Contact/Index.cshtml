@@ -1,0 +1,163 @@
+﻿@model SaminProject.ViewModels.ContactViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home" style="background: url(@Model.HeaderImage) center !important;">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    تماس با ما
+                </h1>
+                <p class="text-white link-nav"><a href="index.html">خانه </a>  <span class="lnr lnr-arrow-left"></span>  <a href="contact.html"> تماس با ما</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start contact-page Area -->
+<section class="contact-page-area section-gap">
+    <div class="container">
+        @if (TempData["Success"] != null)
+        {
+            <div class="row">
+                <div class="alert alert-success alert-styled-left alert-arrow-left alert-component">
+                    @TempData["Success"]
+                </div>
+            </div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="row">
+                <div class="alert alert-danger alert-styled-left alert-arrow-left alert-component">
+                    @TempData["Error"]
+                </div>
+            </div>
+        }
+        <div class="row">
+            <input type="hidden" id="longtiude" value="@Model.Longtidue" />
+            <input type="hidden" id="latiude" value="@Model.Latiude" />
+            <div class="map-wrap" style="width:100%; height: 445px;" id="map"></div>
+            <div class="col-lg-4 d-flex flex-column address-wrap">
+                <div class="single-contact-address d-flex flex-row" style="display: flex;">
+                    <div class="icon">
+                        <span class="lnr lnr-home"></span>
+                    </div>
+                    <div class="contact-details">
+                        <h5>@Model.Country , @Model.City</h5>
+                        <p>
+                            <span>
+                                @Model.Address
+                            </span>
+                            @if (!string.IsNullOrWhiteSpace(Model.Address2))
+                            {
+                                <br /><span>@Model.Address2</span>
+                            }
+                        </p>
+                    </div>
+                </div>
+                <div class="single-contact-address d-flex flex-row" style="display: flex;">
+                    <div class="icon">
+                        <span class="lnr lnr-phone-handset"></span>
+                    </div>
+                    <div class="contact-details">
+                        <h5>@Model.Phone</h5>
+                        <p>@Model.WorkTime</p>
+                    </div>
+                </div>
+                <div class="single-contact-address d-flex flex-row" style="display: flex;">
+                    <div class="icon">
+                        <span class="lnr lnr-smartphone"></span>
+                    </div>
+                    <div class="contact-details">
+                        <h5>@Model.Mobile</h5>
+                        <p>@Model.MobileCaption</p>
+                    </div>
+                </div>
+                <div class="single-contact-address d-flex flex-row" style="display: flex;">
+                    <div class="icon">
+                        <span class="lnr lnr-envelope"></span>
+                    </div>
+                    <div class="contact-details">
+                        <h5>@Model.Emial</h5>
+                        <p>@Model.EmailCaption</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                @using (Html.BeginForm("Create", "Contact", FormMethod.Post, new { id = "myForm", @class = "form-area contact-form text-right" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-lg-6 form-group">
+                            <div class="mb-20">
+                                <input name="FullName" id="FullName" placeholder="نام و نام خانوادگی را وارد نمایید" onfocus="this.placeholder = ''" onblur="this.placeholder = 'نام و نام خانوادگی را وارد نمایید'" class="common-input form-control" type="text">
+                            </div>
+                            <div class="mb-20">
+                                <input name="Email" id="Email" placeholder="ایمیل را وارد نمایید" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ایمیل را وارد نمایید'" class="common-input form-control" type="email">
+                            </div>
+                            <div class="mb-20">
+                                <input name="Subject" id="Subject" placeholder="موضوع را وارد نمایید" onfocus="this.placeholder = ''" onblur="this.placeholder = 'موضوع را وارد نمایید'" class="common-input form-control" type="text">
+                            </div>
+                            <div class="mt-20 alert-msg" style="text-align: left;"></div>
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <textarea class="common-textarea form-control" name="Message" id="Message" placeholder="پیام" onfocus="this.placeholder = ''" onblur="this.placeholder = 'پیام'"></textarea>
+                            <button type="submit" class="genric-btn primary circle mt-30" style="float: right;">ارسال پیام</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End contact-page Area -->
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            $('#myForm').validate({
+                ignore: ":hidden:not(select)",
+                errorElement: 'span',
+                errorClass: 'text-danger',
+                rules: {
+                    FullName: {
+                        required: true,
+                    },
+                    Email: {
+                        required: true,
+                    },
+                    Subject: {
+                        required: true,
+                    },
+                    Message: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    FullName: {
+                        required: "لطفا نام کامل خود را وارد نمایید",
+                    },
+                    Email: {
+                        required: "لطفا ایمیل خود را وارد نمایید",
+                    },
+                    Subject: {
+                        required: "لطفا موضوع خود را وارد نمایید",
+                    },
+                    Message: {
+                        required: "لطفا شرح پیام خود را وارد نمایید",
+                    }
+                },
+                submitHandler: function (form) {
+                    form.submit();
+                }
+            })
+        })
+    </script>
+
+}

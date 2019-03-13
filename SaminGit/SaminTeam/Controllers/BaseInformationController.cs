@@ -76,6 +76,11 @@ namespace SaminProject.Controllers
                 model.TotalClient = pModel.TotalClient;
                 model.TotalEmployees = pModel.TotalEmployees;
                 model.TotalProject = pModel.TotalProject;
+                model.Country = pModel.Country;
+                model.City = pModel.City;
+                model.Longtiude = pModel.Longtiude;
+                model.Latiude = pModel.Latiude;
+                model.WorkTime = pModel.WorkTime;
 
                 unitOfWork.BaseInformationRepository.Update(model);
                 unitOfWork.Save();

@@ -154,14 +154,30 @@
                                         <input type="hidden" id="FileName_@item.UniqueTitle" value="@item.FileName" />
                                         <div class="col-sm-12">
                                             <div class="form-group">
-                                                <label class="control-label">تیتر</label>
+                                                <label class="control-label">
+                                                    @if (item.UniqueTitle.ToLower() == "contact")
+                                                    {
+                                                    <span>کپشن ایمیل</span>
+                                                    }
+                                                    else
+                                                    {
+                                                    <span>تیتر</span>
+                                                    }
+                                                </label>
                                                 <input class="form-control" id="Title_@item.UniqueTitle" maxlength="200" name="Title" value="@item.Title">
                                                 <span class="title-validation text-danger-600" id="titlevalidation_@item.UniqueTitle"></span>
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
                                             <div class="form-group">
-                                                <label class="control-label">تیتر فرعی</label>
+                                                @if (item.UniqueTitle.ToLower() == "contact")
+                                                {
+                                                    <span>کپشن تلفن همراه</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>تیتر فرعی</span>
+                                                }
                                                 <input class="form-control" id="SubTitle_@item.UniqueTitle" maxlength="200" name="SubTitle" value="@item.SubTitle">
                                                 <span class="subtitle-validation text-danger-600" id="subtitlevalidation_@item.UniqueTitle"></span>
                                             </div>
