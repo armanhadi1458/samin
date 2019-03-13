@@ -1,0 +1,80 @@
+﻿@model SaminProject.Models.PageInformation
+
+@{
+                /**/
+
+                ViewBag.Title = "لیست خدمات";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home" style="background: url(/Content/Pages-image/@Model.FileName) center; background-size: cover; background-repeat: no-repeat;">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    خدمات
+                </h1>
+                <p class="text-white link-nav"><a href="index.html">خانه </a>  <span class="lnr lnr-arrow-left"></span>  <a href="services.html"> خدمات</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start service Area -->
+<section class="cat-area section-gap" id="feature">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 pb-30 header-text text-center" id="service-header">
+                <input type="hidden" id="counter" value="1" />
+                @if (!string.IsNullOrWhiteSpace(Model.Title))
+                {
+                    <h1 class="mb-10">@Model.Title</h1>
+                    <p>
+                        @Model.SubTitle
+                    </p>
+                }
+                else
+                {
+                    <h1 class="mb-10"> خدمات </h1>
+                    <p>
+                        بهترین خدمات ارایه شده توسط مارا در زیر مشاهده مینمایید
+                    </p>
+                }
+            </div>
+        </div>
+        <div class="row" id="serviceWrapper">
+            @{
+                Html.RenderAction("_ServiceWrapper");
+            }
+        </div>
+    </div>
+</section>
+<!-- End service Area -->
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            $('#serviceWrapper').on('click', '#LoadService', function () {
+                var counter = $('#counter').val();
+                $('#buttonLoad').remove();
+
+                $.ajax({
+                    url: '/Service/_ServiceWrapper',
+                    type: 'GET',
+                    data: { pCount: counter },
+                    success: function (data) {
+                        $("#serviceWrapper").append(data);
+                        $('#counter').val(parseInt(counter) + 1)
+                    },
+                    error: function (xhr) {
+                        return false;
+                    }
+                })
+            });
+
+        })
+    </script>
+}

@@ -1,17 +1,30 @@
 ﻿@model List<SaminProject.Models.Project>
 @{
-    foreach (var project in Model)
+    if (Model != null)
     {
 
-        <div class="col-lg-4 col-md-4 overlay-container">
-            <a href="~/Content/project-image/@project.FileName" class="img-gal" title="@project.ProjectName">
-                <img class="img-fluid single-project image" src="~/Content/project-image/@project.FileName" alt="@project.OrginalName">
-            </a>
-            <div class="middle">
-                <div class="text"><span>@project.ProjectName</span></div>
-            </div>
-        </div>
+        foreach (var project in Model)
+        {
 
+            <div class="col-lg-4 col-md-4 overlay-container">
+                <a href="~/Content/project-image/@project.FileName" class="img-gal" title="@project.ProjectName">
+                    <img class="img-fluid single-project image" src="~/Content/project-image/@project.FileName" alt="@project.OrginalName">
+                </a>
+                <div class="middle">
+                    <div class="text"><span>@project.ProjectName</span></div>
+                </div>
+            </div>
+
+        }
+    }
+    if (Request.Url.AbsolutePath.ToLower().Contains("/project/list") || Request.IsAjaxRequest())
+    {
+        if (Model.Count() == 24)
+        {
+            <div class="text-center" id="buttonLoad">
+                <button id="LoadProject" class="genric-btn info e-large circle arrow">مشاهده پروژه های بیشتر</button>
+            </div>
+        }
     }
 }
 

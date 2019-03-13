@@ -1,0 +1,83 @@
+﻿@model SaminProject.Models.PageInformation
+
+@{
+    ViewBag.Title = "لیست محصولات";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home" style="background: url(/Content/Pages-image/@Model.FileName) center; background-size: cover; background-repeat: no-repeat;">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    محصولات
+                </h1>
+                <p class="text-white link-nav"><a href="index.html">خانه </a>  <span class="lnr lnr-arrow-left"></span>  <a href="/Product/List"> محصولات</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start product Area -->
+<section class="service-area section-gap" id="service">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 pb-30 header-text text-center" id="product-header">
+                <input type="hidden" id="counter" value="1" />
+                @if (!string.IsNullOrWhiteSpace(Model.Title))
+                {
+                    <h1 class="mb-10">@Model.Title</h1>
+                    <p>
+                        @Model.SubTitle
+                    </p>
+                }
+                else
+                {
+                    <h1 class="mb-10">محصولات</h1>
+                    <p>
+                        پر طرفدارترین محصولات مارا در زیر مشاهده مینمایید برای دیدن کلیه محصولات <a href="/Product/List">اینجا</a> کلیک نمایید ..
+                    </p>
+                }
+            </div>
+        </div>
+        <div class="row" id="productWrapper">
+            @{
+                Html.RenderAction("_ProductWrapper");
+            }
+        </div>
+    </div>
+</section>
+<!-- End product Area -->
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+           $('.product').on('click', function () {
+                var id = $(this).data('id');
+                if (id != '' && id != undefined)
+                    window.location.href = "/Product/Detail/" + id;
+            });
+
+            $('#productWrapper').on('click', '#LoadProduct',  function () {
+                var counter = $('#counter').val();
+                $('#buttonLoad').remove();
+
+                $.ajax({
+                    url: '/Project/_ProductWrapper',
+                    type: 'GET',
+                    data: { pCount: counter },
+                    success: function (data) {
+                        $("#productWrapper").append(data);
+                        $('#counter').val(parseInt(counter) + 1)
+                    },
+                    error: function (xhr) {
+                        return false;
+                    }
+                })
+            })
+        })
+    </script>
+}

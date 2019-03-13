@@ -240,8 +240,8 @@ $(document).ready(function () {
             $('#subtitlevalidation_' + unique).html('<span class="text-danger-600">لطفا تیتر فرعی را وارد نمایید</span>');
         }
 
+        var file = document.getElementById('Image_' + unique).files[0];
         if ($('#FileName_' + unique).val() == '') {
-            var file = document.getElementById('Image_' + unique).files[0];
             if (file == undefined) {
                 $('#errorBlock_' + unique).html('لطفا تصویر زمینه را انتخاب نمایید').show();
                 status = false;

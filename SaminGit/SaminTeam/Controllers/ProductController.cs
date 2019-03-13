@@ -55,6 +55,29 @@ namespace SaminProject.Controllers
             }
         }
 
+        public ActionResult List()
+        {
+            try
+            {
+                PageInformation model = unitOfWork.PageInformationRepository.Get(x => x.UniqueTitle.ToLower() == "products").FirstOrDefault();
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
+        }
+
+        public ActionResult _ProductWrapper(int? pCount)
+        {
+            if (pCount == null)
+                pCount = 0;
+
+            List<Product> pList = unitOfWork.ProductRepository.GetQueryabale().OrderByDescending(x => x.ID).Skip(pCount.Value * 24).Take(24).ToList();
+            return PartialView("_ProductPartial", pList);
+        }
+
+
         [Authenticate, HttpPost, ValidateAntiForgeryToken]
         public ActionResult Create(Product pModel)
         {

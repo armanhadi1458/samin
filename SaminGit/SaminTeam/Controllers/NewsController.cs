@@ -55,6 +55,28 @@ namespace SaminProject.Controllers
             }
         }
 
+        public ActionResult List()
+        {
+            try
+            {
+                PageInformation model = unitOfWork.PageInformationRepository.Get(x => x.UniqueTitle.ToLower() == "news").FirstOrDefault();
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
+        }
+
+        public ActionResult _NewsWrapper(int? pCount)
+        {
+            if (pCount == null)
+                pCount = 0;
+
+            List<News> pList = unitOfWork.NewsRepository.GetQueryabale().OrderByDescending(x => x.ID).Skip(pCount.Value * 9).Take(9).ToList();
+            return PartialView("_NewsPartial", pList);
+        }
+
         [Authenticate, HttpPost, ValidateAntiForgeryToken]
         public ActionResult Create(News pModel)
         {

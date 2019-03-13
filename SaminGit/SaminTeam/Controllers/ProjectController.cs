@@ -28,6 +28,28 @@ namespace SaminProject.Controllers
             }
         }
 
+        public ActionResult List()
+        {
+            try
+            {
+                PageInformation model = unitOfWork.PageInformationRepository.Get(x => x.UniqueTitle.ToLower() == "projects").FirstOrDefault();
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
+        }
+
+        public ActionResult _ProjectWrapper(int? pCount)
+        {
+            if (pCount == null)
+                pCount = 0;
+
+            List<Project> pList = unitOfWork.ProjectRepository.GetQueryabale().OrderByDescending(x => x.ID).Skip(pCount.Value * 9).Take(9).ToList();
+            return PartialView("_ProjectPartial", pList);
+        }
+
         [Authenticate]
         public ActionResult Create(int? Id)
         {

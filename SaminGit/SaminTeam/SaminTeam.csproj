@@ -2749,6 +2749,10 @@
     <Content Include="Views\AboutUs\Index.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Contact\List.cshtml" />
+    <Content Include="Views\Project\List.cshtml" />
+    <Content Include="Views\Service\List.cshtml" />
+    <Content Include="Views\Product\List.cshtml" />
+    <Content Include="Views\News\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

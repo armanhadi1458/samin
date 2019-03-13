@@ -47,11 +47,8 @@
             </div>
         </div>
         <div class="row">
-            @foreach (var service in Model.Services)
-            {
-                Html.RenderPartial("_ServicePartial", service);
-            }
             @{
+                Html.RenderPartial("_ServicePartial", Model.Services);
                 int empty = 3 - Model.Services.Count;
                 if (empty > 0)
                 {

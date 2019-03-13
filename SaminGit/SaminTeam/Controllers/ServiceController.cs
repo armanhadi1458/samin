@@ -54,6 +54,29 @@ namespace SaminProject.Controllers
             }
         }
 
+        public ActionResult List()
+        {
+            try
+            {
+                PageInformation model = unitOfWork.PageInformationRepository.Get(x => x.UniqueTitle.ToLower() == "Services").FirstOrDefault();
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
+        }
+
+        public ActionResult _ServiceWrapper(int? pCount)
+        {
+            if (pCount == null)
+                pCount = 0;
+
+            List<Service> pList = unitOfWork.ServiceRepository.GetQueryabale().OrderByDescending(x => x.ID).Skip(pCount.Value * 9).Take(9).ToList();
+            return PartialView("_ServicePartial", pList);
+        }
+
+
         [Authenticate, HttpPost, ValidateAntiForgeryToken]
         public ActionResult Create(Service pModel)
         {

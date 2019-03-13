@@ -1,13 +1,29 @@
-﻿@model SaminProject.Models.Service
-    @{ 
-        var ClassName = $"lnr lnr-{Model.Icon}";
+﻿@model List<SaminProject.Models.Service>
+@{
+    if (Model != null)
+    {
+        foreach (var service in Model)
+        {
+            var ClassName = $"lnr lnr-{service.Icon}";
+            <div class="col-lg-4">
+                <div class="single-cat">
+                    <a href="/Service/Detail/@service.ID" class="hb-sm-margin mx-auto d-block"><span class="hb hb-sm inv hb-facebook-inv"><span class="@ClassName"></span></span></a>
+                    <h4 class="mt-40 mb-20">@service.Title</h4>
+                    <p>
+                        @service.Description
+                    </p>
+                </div>
+            </div>
+        }
     }
-<div class="col-lg-4">
-    <div class="single-cat">
-        <a href="/Service/Detail/@Model.ID" class="hb-sm-margin mx-auto d-block"><span class="hb hb-sm inv hb-facebook-inv"><span class="@ClassName"></span></span></a>
-        <h4 class="mt-40 mb-20">@Model.Title</h4>
-        <p>
-            @Model.Description
-        </p>
-    </div>
-</div>
+    if (Request.Url.AbsolutePath.ToLower().Contains("/service/list") || Request.IsAjaxRequest())
+    {
+        if (Model.Count() == 9)
+        {
+            <div class="text-center" id="buttonLoad">
+                <button id="LoadService" class="genric-btn info e-large circle arrow">مشاهده خدمات بیشتر</button>
+            </div>
+        }
+    }
+}
+
