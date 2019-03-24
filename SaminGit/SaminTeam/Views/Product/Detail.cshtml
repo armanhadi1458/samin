@@ -1,0 +1,76 @@
+﻿@model SaminProject.Models.Product
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home" style="background: url(/Content/Pages-image/@ViewBag.HeaderImage) center; background-size: cover; background-repeat: no-repeat;">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    محصولات
+                </h1>
+                <p class="text-white link-nav"><a href="index.html">خانه </a>  <span class="lnr lnr-arrow-left"></span>  <a href="/Product/List"> محصولات</a><span class="lnr lnr-arrow-left"></span>  <a href="/Product/Detail/@Model.ID"> @Model.Title</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start blog-posts Area -->
+    <div class="container mt-50">
+        <div class="row">
+            <div class="col-lg-8 col-sm-12 post-list blog-post-list">
+                <div class="single-post">
+                    <a href="#">
+                        <h1>
+                            @Model.Title
+                        </h1>
+                    </a>
+                    <div class="content-wrap">
+                        @Html.Raw(Model.Content)
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-12 sidebar">
+                <div class="single-widget recent-posts-widget">
+                    <h4 class="title">جدیدترین محصولات</h4>
+                    <div class="blog-list ">
+                        @{Html.RenderAction("_RecentProduct", new { Id = Model.ID });}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- End blog-posts Area -->
+<!-- Start gallery Area -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 pb-30 header-text text-center" id="project-header">
+            <h1 class="mb-10">گالری تصاویر محصول</h1>
+        </div>
+    </div>
+    <div class="row">
+        @{
+            if (Model.ProductImages != null)
+            {
+                foreach (var item in Model.ProductImages)
+                {
+
+                    <div class="col-lg-4 col-md-4 overlay-container">
+                        <a href="data:image/png;base64, @item.Base64" class="img-gal" title="@item.Name">
+                            <img class="img-fluid single-project image" src="data:image/png;base64, @item.Base64" alt="@item.Name">
+                        </a>
+                        <div class="middle">
+                            <div class="text"><span class="lnr lnr-magnifier" style="font-size:32px; font-weight:bolder;"></span></div>
+                        </div>
+                    </div>
+
+                }
+            }
+        }
+    </div>
+</div>
+<!-- End project Area -->

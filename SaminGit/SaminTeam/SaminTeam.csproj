@@ -2697,6 +2697,10 @@
     <Compile Include="Migrations\201903131347326_Add_ContactModel_Date.Designer.cs">
       <DependentUpon>201903131347326_Add_ContactModel_Date.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903231744458_Add_DateTime_Product_Service.cs" />
+    <Compile Include="Migrations\201903231744458_Add_DateTime_Product_Service.Designer.cs">
+      <DependentUpon>201903231744458_Add_DateTime_Product_Service.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthenticateAttribute.cs" />
     <Compile Include="Models\BaseInformation.cs" />
@@ -2717,6 +2721,7 @@
     <Compile Include="ViewModels\FooterViewModel.cs" />
     <Compile Include="ViewModels\HeaderViewModel.cs" />
     <Compile Include="ViewModels\IndexViewModel.cs" />
+    <Compile Include="ViewModels\RecentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -2753,6 +2758,10 @@
     <Content Include="Views\Service\List.cshtml" />
     <Content Include="Views\Product\List.cshtml" />
     <Content Include="Views\News\List.cshtml" />
+    <Content Include="Views\News\Detail.cshtml" />
+    <Content Include="Views\Shared\_RecentPartial.cshtml" />
+    <Content Include="Views\Service\Detail.cshtml" />
+    <Content Include="Views\Product\Detail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2831,6 +2840,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903131347326_Add_ContactModel_Date.resx">
       <DependentUpon>201903131347326_Add_ContactModel_Date.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903231744458_Add_DateTime_Product_Service.resx">
+      <DependentUpon>201903231744458_Add_DateTime_Product_Service.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

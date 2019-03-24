@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SaminProject.Library;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -55,6 +56,20 @@ namespace SaminProject.Models
                 else
                     return string.Empty;
             }
+        }
+
+        public DateTime Date { get; set; }
+
+        [NotMapped]
+        public string ShamsiDate
+        {
+            get
+            {
+                if (Date != null)
+                    return Utility.GetPersianDateString(Date);
+                return string.Empty;
+            }
+            set { }
         }
 
     }

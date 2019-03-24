@@ -1,5 +1,6 @@
 ﻿using SaminProject.Library;
 using SaminProject.Models;
+using SaminProject.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -68,6 +69,22 @@ namespace SaminProject.Controllers
             }
         }
 
+        public ActionResult Detail(int? Id)
+        {
+            try
+            {
+                Product model = unitOfWork.ProductRepository.GetByID(Id);
+                if (model == null)
+                    return View("NotFound");
+                ViewBag.HeaderImage = unitOfWork.PageInformationRepository.Get(x => x.UniqueTitle.ToLower() == "products")?.FirstOrDefault()?.FileName;
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
+        }
+
         public ActionResult _ProductWrapper(int? pCount)
         {
             if (pCount == null)
@@ -77,6 +94,26 @@ namespace SaminProject.Controllers
             return PartialView("_ProductPartial", pList);
         }
 
+        public ActionResult _RecentProduct(int? Id)
+        {
+            try
+            {
+                List<Product> productList = unitOfWork.ProductRepository.GetQueryabale().Where(x => x.ID != Id).Take(4).OrderByDescending(x => x.ID).ToList();
+                List<RecentViewModel> pList = productList.Select(x => new RecentViewModel()
+                {
+                    Image = x.ProductImages.FirstOrDefault().Base64,
+                    Title = x.Title,
+                    DateShamsi = x.ShamsiDate,
+                    Href = "/Product/Detail/" + x.ID
+                }).ToList();
+
+                return PartialView("_RecentPartial", pList);
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
+        }
 
         [Authenticate, HttpPost, ValidateAntiForgeryToken]
         public ActionResult Create(Product pModel)
@@ -99,6 +136,7 @@ namespace SaminProject.Controllers
                 }
                 if (pModel.ID == null)
                 {
+                    pModel.Date = DateTime.Now;
                     pModel = unitOfWork.ProductRepository.Insert(pModel);
                     unitOfWork.Save();
                     if (pModel.Images.FirstOrDefault() != null)

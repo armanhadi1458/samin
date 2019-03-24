@@ -1,9 +1,11 @@
 ﻿using SaminProject.Library;
 using SaminProject.Models;
+using SaminProject.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -55,6 +57,22 @@ namespace SaminProject.Controllers
             }
         }
 
+        public ActionResult Detail(int? Id)
+        {
+            try
+            {
+                News model = unitOfWork.NewsRepository.GetByID(Id);
+                if (model == null)
+                    return View("NotFound");
+                ViewBag.HeaderImage = unitOfWork.PageInformationRepository.Get(x => x.UniqueTitle.ToLower() == "news")?.FirstOrDefault()?.FileName;
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
+        }
+
         public ActionResult List()
         {
             try
@@ -75,6 +93,27 @@ namespace SaminProject.Controllers
 
             List<News> pList = unitOfWork.NewsRepository.GetQueryabale().OrderByDescending(x => x.ID).Skip(pCount.Value * 9).Take(9).ToList();
             return PartialView("_NewsPartial", pList);
+        }
+
+        public ActionResult _RecentNews(int? Id)
+        {
+            try
+            {
+                List<News> newsList = unitOfWork.NewsRepository.GetQueryabale().Where(x => x.ID != Id).Take(4).OrderByDescending(x => x.ID).ToList();
+                List<RecentViewModel> pList = newsList.Select(x => new RecentViewModel()
+                {
+                    Image = x.Base64Image,
+                    Title = x.Title,
+                    DateShamsi = x.ShamsiDate,
+                    Href = "/News/Detail/" + x.ID
+                }).ToList();
+
+                return PartialView("_RecentPartial", pList);
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
         }
 
         [Authenticate, HttpPost, ValidateAntiForgeryToken]

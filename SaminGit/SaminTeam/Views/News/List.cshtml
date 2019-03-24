@@ -55,6 +55,13 @@
     <script>
         $(document).ready(function () {
 
+            $('#newsWrapper').on('click', '.single-blog', function () {
+                var id = $(this).data('id')
+                if (id == '' || id == undefined)
+                    return false;
+                window.location.href = '/News/Detail/' + id;
+            })
+
             $('#newsWrapper').on('click', '#LoadNews', function () {
                 var counter = $('#counter').val();
                 $('#buttonLoad').remove();

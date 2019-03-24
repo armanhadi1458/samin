@@ -1,5 +1,6 @@
 ﻿using SaminProject.Library;
 using SaminProject.Models;
+using SaminProject.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -58,7 +59,24 @@ namespace SaminProject.Controllers
         {
             try
             {
-                PageInformation model = unitOfWork.PageInformationRepository.Get(x => x.UniqueTitle.ToLower() == "Services").FirstOrDefault();
+                PageInformation model = unitOfWork.PageInformationRepository.Get(x => x.UniqueTitle.ToLower() == "services").FirstOrDefault();
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
+        }
+
+        public ActionResult Detail(int? Id)
+        {
+            try
+            {
+                Service model = unitOfWork.ServiceRepository.GetByID(Id);
+                if (model == null)
+                    return View("NotFound");
+
+                ViewBag.HeaderImage = unitOfWork.PageInformationRepository.Get(x => x.UniqueTitle.ToLower() == "services")?.FirstOrDefault()?.FileName;
                 return View(model);
             }
             catch (Exception ex)
@@ -76,6 +94,26 @@ namespace SaminProject.Controllers
             return PartialView("_ServicePartial", pList);
         }
 
+        public ActionResult _RecentServices(int? Id)
+        {
+            try
+            {
+                List<Service> servicList = unitOfWork.ServiceRepository.GetQueryabale().Where(x => x.ID != Id).Take(4).OrderByDescending(x => x.ID).ToList();
+                List<RecentViewModel> pList = servicList.Select(x => new RecentViewModel()
+                {
+                    Image = x.Base64Image,
+                    Title = x.Title,
+                    DateShamsi = x.ShamsiDate,
+                    Href = "/Service/Detail/" + x.ID
+                }).ToList();
+
+                return PartialView("_RecentPartial", pList);
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
+        }
 
         [Authenticate, HttpPost, ValidateAntiForgeryToken]
         public ActionResult Create(Service pModel)
@@ -97,6 +135,7 @@ namespace SaminProject.Controllers
                     MemoryStream ms = new MemoryStream();
                     pModel.ContentFile.InputStream.CopyTo(ms);
                     pModel.Logo = ms.ToArray();
+                    pModel.Date = DateTime.Now;
                     unitOfWork.ServiceRepository.Insert(pModel);
                 }
                 else

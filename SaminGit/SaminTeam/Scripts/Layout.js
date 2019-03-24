@@ -1,6 +1,10 @@
 ﻿
 $(document).ready(function () {
 
+    $('.navigation-accordion li').on('click', function () {
+        LoadElement('.content');
+    });
+
     $('.select2').select2();
 
     // Format icon

@@ -189,3 +189,4 @@ D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminTeam.csprojAssemblyRefe
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.Add_BaseInfo_city.resources
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.Add_ContactModel.resources
 D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.Add_ContactModel_Date.resources
+D:\Test\SaminGit\samin\SaminGit\SaminTeam\obj\Debug\SaminProject.Migrations.Add_DateTime_Product_Service.resources

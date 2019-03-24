@@ -1,0 +1,52 @@
+﻿@model SaminProject.Models.Service
+
+@{
+
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home" style="background: url(/Content/Pages-image/@ViewBag.HeaderImage) center; background-size: cover; background-repeat: no-repeat;">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    خدمات
+                </h1>
+                <p class="text-white link-nav"><a href="index.html">خانه </a>  <span class="lnr lnr-arrow-left"></span>  <a href="/News/List"> خدمات</a><span class="lnr lnr-arrow-left"></span>  <a href="/News/Detail/@Model.ID"> @Model.Title</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start blog-posts Area -->
+<section class="blog-posts-area section-gap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-sm-12 post-list blog-post-list">
+                <div class="single-post">
+                    <img class="img-fluid" src="data:image/png;base64, @Model.Base64Image" alt="@Model.Title">
+                    <a href="#">
+                        <h1>
+                            @Model.Title
+                        </h1>
+                    </a>
+                    <div class="content-wrap">
+                        @Html.Raw(Model.Content)
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-12 sidebar">
+                <div class="single-widget recent-posts-widget">
+                    <h4 class="title">جدیدترین خدمات</h4>
+                    <div class="blog-list ">
+                        @{Html.RenderAction("_RecentServices", new { Id = Model.ID });}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End blog-posts Area -->

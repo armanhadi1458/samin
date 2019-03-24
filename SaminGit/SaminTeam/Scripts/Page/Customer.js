@@ -30,7 +30,7 @@ function CheckFile(file) {
     var get_ext = file.name.split('.');
     get_ext = get_ext.reverse();
     if ($.inArray(get_ext[0].toLowerCase(), exts) > -1) {
-        if (file.size > 20480) {
+        if (file.size > 204800) {
             $('#kv-error').html('حجم مجاز برای لوگو حداکثر 200کیلوبایت میباشد');
             $('#kv-error').show();
             return false;
