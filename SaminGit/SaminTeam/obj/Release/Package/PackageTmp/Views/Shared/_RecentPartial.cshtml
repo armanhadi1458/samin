@@ -1,0 +1,45 @@
+﻿@model List<SaminProject.ViewModels.RecentViewModel>
+
+@foreach (var item in Model)
+{
+    <div class="single-recent-post d-flex flex-row" style="display:flex;">
+        <div class="recent-thumb">
+            <img class="img-fluid" src="data:image/png;base64, @item.Image" alt="@item.Title" style="width:100px; height:60px;">
+        </div>
+        <div class="recent-details">
+            <a href="@item.Href">
+                <h4>
+                    @item.Title
+                </h4>
+            </a>
+            <p>
+                @item.DateShamsi
+            </p>
+        </div>
+    </div>
+}
+@{
+    int count = 4 - Model.Count;
+    if (count > 0)
+    {
+        for (int i = 1; i <= count; i++)
+        {
+            string src = "/Content/img/blog/r" + i + ".jpg";
+            <div class="single-recent-post d-flex flex-row" style="display:flex;">
+                <div class="recent-thumb">
+                    <img class="img-fluid" src="@src" alt="" style="width:100px; height:60px;">
+                </div>
+                <div class="recent-details">
+                    <a href="#">
+                        <h4>
+                            لورم ایپسوم
+                        </h4>
+                    </a>
+                    <p>
+                        @i فروردین 1398
+                    </p>
+                </div>
+            </div>
+        }
+    }
+}

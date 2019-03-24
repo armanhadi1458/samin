@@ -1,0 +1,248 @@
+﻿@model List<SaminProject.Models.PageInformation>
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 100%;
+        max-width: 700px;
+    }
+</style>
+
+@section PageHeader{
+    <div class="page-header page-header-default">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-arrow-right6 position-left"></i> <span class="text-semibold">مدیریت صفحات</span> - داشبورد</h4>
+            </div>
+        </div>
+        <div class="breadcrumb-line">
+            <ul class="breadcrumb">
+                <li><a href="/admin/index"><i class="icon-home2 position-left"></i> داشبورد</a></li>
+                <li class="active">مدیریت صفحات</li>
+            </ul>
+        </div>
+
+
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-white" id="form_panel">
+            <div class="panel-heading">
+                <h6 class="panel-title" id="panelTitle"><i class="icon-pencil7 position-left"></i>ویرایش اطلاعات صفحات (صفحه اصلی)<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+
+                <div class="heading-elements">
+                    <ul class="icons-list">
+                        <li><a data-action="collapse" class=""></a></li>
+                    </ul>
+                    <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                </div>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="alert alert-info alert-styled-left alert-arrow-left alert-component">
+                    <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+                    <h6 class="alert-heading text-semibold">تصویر زمینه</h6>
+                    برای اینکه تصویر زمینه با کیفیت نشان داده شود از عکس هایی با سایز 1080×1920 استفاده نمایید.
+                </div>
+
+                @if (TempData["Success"] != null)
+                {
+                    <div class="col-md-12">
+                        <div class="alert alert-success alert-styled-left alert-arrow-left alert-component">
+                            @TempData["Success"]
+                        </div>
+                    </div>
+                }
+
+                @if (TempData["Error"] != null)
+                {
+                    <div class="col-md-12">
+                        <div class="alert alert-danger alert-styled-left alert-arrow-left alert-component">
+                            @TempData["Error"]
+                        </div>
+                    </div>
+                }
+
+                <ul class="nav nav-tabs">
+                    @{
+                        foreach (var item in Model.OrderBy(x => x.ID))
+                        {
+                            var href = $"#{item.UniqueTitle}";
+                            if (item.ID == 1)
+                            {
+                                <li class="active"><a data-toggle="tab" href="@href" data-title="@item.PageTitle">@item.PageTitle</a></li>
+                            }
+                            else
+                            {
+                                <li><a data-toggle="tab" href="@href" data-title="@item.PageTitle">@item.PageTitle</a></li>
+                            }
+                        }
+                    }
+                </ul>
+
+                <div class="tab-content">
+                    @{
+                        foreach (var item in Model.OrderBy(x => x.ID))
+                        {
+                            if (item.ID == 1)
+                            {
+                                <div id="@item.UniqueTitle" class="tab-pane active">
+                                    <form id="frm_@item.UniqueTitle">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="ID" id="ID_@item.UniqueTitle" value="@item.ID" />
+                                        <input type="hidden" id="FileName_@item.UniqueTitle" value="@item.FileName" />
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label class="control-label">تیتر</label>
+                                                <input class="form-control" id="Title_@item.UniqueTitle" maxlength="200" name="Title" value="@item.Title">
+                                                <span class="title-validation text-danger-600" id="titlevalidation_@item.UniqueTitle"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label class="control-label">تیتر فرعی</label>
+                                                <input class="form-control" id="SubTitle_@item.UniqueTitle" maxlength="200" name="SubTitle" value="@item.SubTitle">
+                                                <span class="subtitle-validation text-danger-600" id="subtitlevalidation_@item.UniqueTitle"></span>
+                                            </div>
+                                        </div>
+                                        @if (!string.IsNullOrWhiteSpace(item.FileName))
+                                        {
+                                            <div class="col-sm-10">
+                                                <div class="form-group">
+                                                    <label class="control-label">تصویر زمینه</label>
+                                                    <input name="HeaderImage" id="Image_@item.UniqueTitle" type="file" class="file-input-ajax" />
+                                                    <div id="errorBlock_@item.UniqueTitle" class="help-block"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-2" style="margin-top:27px;" id="ShowBox_@item.UniqueTitle">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-filename="@item.FileName" data-target="#showModal">نمایش تصویر زمینه</button>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">تصویر زمینه</label>
+                                                    <input name="HeaderImage" id="Image_@item.UniqueTitle" type="file" class="file-input-ajax" />
+                                                    <div id="errorBlock_@item.UniqueTitle" class="help-block"></div>
+                                                </div>
+                                            </div>
+                                        }
+                                        <div class="col-sm-12 text-center mt-20">
+                                            <button type="button" class="btn btn-primary submit">ویرایش</button>
+                                            <a href="/admin/index" class="btn btn-warning">بازگشت</a>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            }
+                            else
+                            {
+                                <div id="@item.UniqueTitle" class="tab-pane">
+                                    <form id="frm_@item.UniqueTitle">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="ID" id="ID_@item.UniqueTitle" value="@item.ID" />
+                                        <input type="hidden" id="FileName_@item.UniqueTitle" value="@item.FileName" />
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label class="control-label">
+                                                    @if (item.UniqueTitle.ToLower() == "contact")
+                                                    {
+                                                    <span>کپشن ایمیل</span>
+                                                    }
+                                                    else
+                                                    {
+                                                    <span>تیتر</span>
+                                                    }
+                                                </label>
+                                                <input class="form-control" id="Title_@item.UniqueTitle" maxlength="200" name="Title" value="@item.Title">
+                                                <span class="title-validation text-danger-600" id="titlevalidation_@item.UniqueTitle"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                @if (item.UniqueTitle.ToLower() == "contact")
+                                                {
+                                                    <span>کپشن تلفن همراه</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>تیتر فرعی</span>
+                                                }
+                                                <input class="form-control" id="SubTitle_@item.UniqueTitle" maxlength="200" name="SubTitle" value="@item.SubTitle">
+                                                <span class="subtitle-validation text-danger-600" id="subtitlevalidation_@item.UniqueTitle"></span>
+                                            </div>
+                                        </div>
+
+                                        @if (!string.IsNullOrWhiteSpace(item.FileName))
+                                        {
+                                            <div class="col-sm-10">
+                                                <div class="form-group">
+                                                    <label class="control-label">تصویر زمینه</label>
+                                                    <input name="HeaderImage" id="Image_@item.UniqueTitle" type="file" class="file-input-ajax" />
+                                                    <div id="errorBlock_@item.UniqueTitle" class="help-block"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-2" style="margin-top:27px;" id="ShowBox_@item.UniqueTitle">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-filename="@item.FileName" data-target="#showModal">نمایش تصویر زمینه</button>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">تصویر زمینه</label>
+                                                    <input name="HeaderImage" id="Image_@item.UniqueTitle" type="file" class="file-input-ajax" />
+                                                    <div id="errorBlock_@item.UniqueTitle" class="help-block"></div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        <div class="col-sm-12 text-center mt-20">
+                                            <button type="button" class="btn btn-primary submit">ویرایش</button>
+                                            <a href="/admin/index" class="btn btn-warning">بازگشت</a>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-center" id="showModal" aria-hidden="true" aria-labelledby="showDocumentPic" role="dialog" tabindex="-1" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title c-red"><i class="icon-file-picture"></i> نمایش تصویر زمینه<span id="title"></span></h4>
+            </div>
+            <div class="modal-body">
+                <img class="modal-content" id="show-pic" src="" alt="" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/assest/js/plugins/uploaders/fileinput.min.js"></script>
+    <script src="~/assest/js/plugins/uploaders/fileinput.fa.lang.js"></script>
+    <script src="~/Scripts/Page/PageInformation.js"></script>
+}

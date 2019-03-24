@@ -1,0 +1,37 @@
+﻿@model SaminProject.ViewModels.AboutUsViewModel
+@{
+    ViewBag.Title = "درباره ما";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home" style="background: url(@Model.HeaderImage) center !important;">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    درباره ما
+                </h1>
+                <p class="text-white link-nav"><a href="/Home/Index">خانه </a>  <span class="lnr lnr-arrow-left"></span>  <a href="/AboutUs/Index"> درباره ما</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start home-about Area -->
+<section class="home-about-area section-gap aboutus-about" id="about">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-12 col-md-12 home-about-left">
+                <h1>@Model.Title</h1>
+                <p class="sub">@Model.SubTitle</p>
+                <p class="pb-20">
+                    @Html.Raw(Model.Content)
+                </p>
+                <a class="primary-btn" href="/Contact/Index">تماس با ما</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End home-about Area -->

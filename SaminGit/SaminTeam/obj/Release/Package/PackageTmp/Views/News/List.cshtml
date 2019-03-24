@@ -1,0 +1,85 @@
+﻿@model SaminProject.Models.PageInformation
+
+@{
+    ViewBag.Title = "لیست اخبار";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home" style="background: url(/Content/Pages-image/@Model.FileName) center; background-size: cover; background-repeat: no-repeat;">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    اخبار
+                </h1>
+                <p class="text-white link-nav"><a href="index.html">خانه </a>  <span class="lnr lnr-arrow-left"></span>  <a href="/News/List"> اخبار</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start blog Area -->
+<section class="blog-area section-gap" id="blog">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 pb-30 header-text" id="news-header">
+                <input type="hidden" id="counter" value="1" />
+                @if (!string.IsNullOrWhiteSpace(Model.Title))
+                {
+                    <h1>@Model.Title</h1>
+                    <p>
+                        @Model.SubTitle
+                    </p>
+                }
+                else
+                {
+                    <h1>تازه ترین اخبار</h1>
+                    <p>
+                        تازه ترین خبرهای مارا در زیر مشاهده مینمایید برای دیدن کلیه اخبار <a href="/News/List">اینجا</a> کلیک نمایید ..
+                    </p>
+                }
+            </div>
+        </div>
+        <div class="row" id="newsWrapper">
+            @{
+                Html.RenderAction("_NewsWrapper");
+            }
+        </div>
+    </div>
+</section>
+<!-- end blog Area -->
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            $('#newsWrapper').on('click', '.single-blog', function () {
+                var id = $(this).data('id')
+                if (id == '' || id == undefined)
+                    return false;
+                window.location.href = '/News/Detail/' + id;
+            })
+
+            $('#newsWrapper').on('click', '#LoadNews', function () {
+                var counter = $('#counter').val();
+                $('#buttonLoad').remove();
+
+                $.ajax({
+                    url: '/News/_NewsWrapper',
+                    type: 'GET',
+                    data: { pCount: counter },
+                    success: function (data) {
+                        $("#newsWrapper").append(data);
+                        $('#counter').val(parseInt(counter) + 1)
+                    },
+                    error: function (xhr) {
+                        return false;
+                    }
+                })
+            })
+
+        })
+    </script>
+}

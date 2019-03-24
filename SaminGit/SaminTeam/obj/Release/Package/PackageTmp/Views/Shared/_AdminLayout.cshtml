@@ -1,0 +1,277 @@
+﻿
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>مدیریت سایت</title>
+    <!-- Global stylesheets -->
+    <link href="~/assest/css/icons/icomoon/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/css/linearicons.css">
+    <link href="~/assest/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/assest/css/core.css" rel="stylesheet" />
+    <link href="~/assest/css/components.css" rel="stylesheet" />
+    <link href="~/assest/css/colors.css" rel="stylesheet" />
+    <link href="~/assest/js/plugins/toaster/toastr.min.css" rel="stylesheet" />
+    <link href="~/assest/js/plugins/chosen/chosen.css" rel="stylesheet" />
+    <link href="~/assest/js/plugins/Persian-Bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
+    <link href="~/assest/js/plugins/tippy/tippy.css" rel="stylesheet" />
+    <link href="~/assest/js/plugins/timedroper/timedropper.css" rel="stylesheet" />
+    <!-- /global stylesheets -->
+    <!-- Core JS files -->
+    <script src="~/assest/js/plugins/loaders/pace.min.js"></script>
+
+    <script src="~/assest/js/core/libraries/jquery.min.js"></script>
+    <script src="~/assest/js/core/libraries/bootstrap.min.js"></script>
+    <script src="~/assest/js/plugins/loaders/blockui.min.js"></script>
+    <script src="~/assest/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script src="~/assest/js/plugins/tables/datatables/extensions/jszip/jszip.min.js"></script>
+    <script src="~/assest/js/plugins/tables/datatables/extensions/buttons.min.js"></script>
+    <script src="~/assest/js/plugins/tables/datatables/extensions/responsive.min.js"></script>
+    <script src="~/assest/js/plugins/Persian-Bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/assest/js/plugins/tippy/tippy.js"></script>
+    <script src="~/assest/js/plugins/timedroper/timedropper.min.js"></script>
+    <script src="~/assest/js/plugins/forms/inputs/passy.js"></script>
+    <script src="~/Scripts/datatabl-config.js"></script>
+    <link rel="icon" href="~/assets/images/favicon.ico" />
+    <!-- /theme JS files -->
+</head>
+<body>
+
+    <!-- Main navbar -->
+    <div class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/Manage/Default.aspx">
+                @*<img src="/assets/images/logo_light.png" alt="">*@
+                <span class="logo-object"><i class="icon-reading"></i></span><strong>مدیریت اطلاعات سایت</strong>
+            </a>
+            <ul class="nav navbar-nav visible-xs-block">
+                <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+                <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+            </ul>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-mobile">
+            <ul class="nav navbar-nav">
+                <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+            </ul>
+            @using (Html.BeginForm("LogOut", "Admin", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+            {
+                @Html.AntiForgeryToken()
+            }
+            <div class="navbar-right">
+                <p class="navbar-text">خوش آمدی, ادمین</p>
+                <p class="navbar-text"><span class="label bg-success">آنلاین</span></p>
+                <ul class="nav navbar-nav">
+
+                    <li class="dropdown dropdown-user">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="~/assest/images/avatar.png" alt="">
+                            <span>ادمین</span>
+                            <i class="caret"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a data-toggle="modal" data-target="#adminChangePasswordModal"><i class="icon-lock"></i>تغییر رمز عبور</a></li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="javascript:document.getElementById('logoutForm').submit()"><i class="icon-switch2"></i>خروج</a>
+
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /main navbar -->
+    <!-- Page container -->
+    <div class="page-container">
+        <!-- Page content -->
+        <div class="page-content">
+            <!-- Main sidebar -->
+            <div class="sidebar sidebar-main">
+                <div class="sidebar-content">
+                    <!-- User menu -->
+                    <div class="sidebar-user">
+                        <div class="category-content">
+                            <div class="media">
+                                <a href="#" class="media-left"><img src="~/assest/images/avatar.png" class="img-circle img-sm" alt=""></a>
+                                <div class="media-body">
+                                    <span class="media-heading text-semibold">ادمین</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /user menu -->
+                    <!-- Main navigation -->
+                    <div class="sidebar-category sidebar-category-visible">
+                        <div class="category-content no-padding">
+                            <ul class="navigation navigation-main navigation-accordion">
+                                <!-- Main -->
+                                <!-- SuperAdmin Menu -->
+
+                                <li class="navigation-header"><span>منوی مدیر سیستم</span> <i class="icon-menu" title="Main pages"></i></li>
+                                <li id="menu_baseInformation"><a href="/BaseInformation/Edit"><i class="icon-equalizer"></i> <span>مدیریت اطلاعات پایه</span></a></li>
+                                <li id="menu_customers"><a href="/Customer/index"><i class="icon-users4"></i> <span>مدیریت مشتریان</span></a></li>
+                                <li id="menu_application"><a href="/Product/index"><i class="icon-price-tags"></i> <span>مدیریت محصولات</span></a></li>
+                                <li id="menu_service"><a href="/Service/index"><i class="icon-briefcase3"></i> <span>مدیریت خدمات</span></a></li>
+                                <li id="menu_project"><a href="/Project/index"><i class="icon-archive"></i> <span>مدیریت پروژه ها</span></a></li>
+                                <li id="menu_news"><a href="/News/index"><i class="icon-magazine"></i> <span>مدیریت اخبار</span></a></li>
+                                <li id="menu_page"><a href="/PageInformation/index"><i class="icon-stack-empty"></i> <span>مدیریت صفحات</span></a></li>
+                                <li id="menu_application"><a href="/Contact/List"><i class="icon-headset"></i> <span>مدیریت تماس ها</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /main navigation -->
+                </div>
+            </div>
+            <!-- /main sidebar -->
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Page header -->
+                @RenderSection("PageHeader", false)
+                <!-- /page header -->
+                <!-- Content area -->
+                <div class="content">
+
+
+
+                    @RenderBody()
+
+
+
+
+
+
+                    <!-- Footer -->
+                    <div class="footer text-muted">
+                        &copy; 2018. Samin Web App by <a href="" target="_blank">ArmanHadi</a>
+                    </div>
+                    <!-- /footer -->
+                </div>
+                <!-- /content area -->
+            </div>
+            <!-- /main content -->
+        </div>
+        <!-- /page content -->
+    </div>
+
+    <div class="modal fade" id="adminChangePasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" id="adminChangePasswordContent">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        <i class="icon-lock"></i>
+                        تغییر رمز عبور
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        @{
+                            AjaxOptions ajaxOptionChangeAdminPassword = new AjaxOptions()
+                            {
+                                // Url = "/Home/ChangeUserPassword",
+                                HttpMethod = "POST",
+                                OnSuccess = "OnSuccessChangePassword",
+                                OnFailure = "OnFailChangePassword",
+                                OnBegin = "OnBeginChangePassword"
+                            };
+                        }
+                        @using (Ajax.BeginForm("ChangeUserPassword", "Admin", null, ajaxOptionChangeAdminPassword, new { id = "frm_adminChange", @class = "", autocomplete = "off" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">رمز عبور فعلی</label>
+                                    <input class="form-control" data-val="true" data-val-minlength="رمز عبور فعلی اشتباه است" data-val-minlength-min="6" data-val-required="لطفا رمز عبور فعلی را وارد نماپید" id="OldPassword" maxlength="100" name="OldPassword" type="password" value="">
+                                    <span class="field-validation-valid" data-valmsg-for="OldPassword" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">رمز عبور جدید</label>
+                                    <div class="label-indicator-absolute">
+                                        <input class="form-control" data-val="true" data-val-minlength="رمز عبور باید حداقل 6 کاراکتر باشد" data-val-minlength-min="6" data-val-required="لطفا رمز عبور جدید را وارد نماپید" id="NewPassword" maxlength="100" name="NewPassword" type="password" value="">
+                                        <span class="label password-indicator-label-absolute"></span>
+                                    </div>
+                                    <span class="field-validation-valid" data-valmsg-for="NewPassword" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">تکرار رمز عبور جدید</label>
+                                    <input class="form-control" data-val="true" data-val-equalto="رمز عبور جدید و تکرار رمز عبور جدید با هم یکسان نیستند" data-val-equalto-other="*.NewPassword" data-val-required="لطفا تکرار رمز عبور جدید را وارد نماپید" id="ReNewPassword" maxlength="100" name="ReNewPassword" type="password" value="">
+                                    <span class="field-validation-valid" data-valmsg-for="ReNewPassword" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 text-right mt-20">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+                                <button type="submit" class="btn btn-primary">ثبت رمز عبور</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+
+    <!-- /core JS files -->
+    <!-- Theme JS files -->
+    <script src="~/assest/js/plugins/forms/styling/switch.min.js"></script>
+    <script src="~/assest/js/plugins/forms/styling/uniform.min.js"></script>
+    <script src="~/assest/js/plugins/forms/selects/select2.min.js"></script>
+    <script src="~/assest/js/core/app.js"></script>
+    <script src="~/assest/js/pages/dashboard.js"></script>
+    <script src="~/assest/js/plugins/toaster/toastr.min.js"></script>
+    <script src="~/assest/js/plugins/forms/selects/select2.min.js"></script>
+    <script src="~/assest/js/plugins/chosen/chosen.jquery.min.js"></script>
+    <script src="~/assest/js/plugins/uploaders/fileinput.min.js"></script>
+    <script src="~/assest/js/plugins/uploaders/fileinput.fa.lang.js"></script>
+
+    <script src="~/Scripts/Layout.js"></script>
+
+
+    @RenderSection("Scripts", false)
+
+
+    <script>
+
+        function LoadElement(pSelector) {
+
+            $(pSelector).block({
+                message: '<i class="icon-spinner4 spinner"></i><span class="text-semibold display-block">لطفا منتظر بمانید...</span>',
+                overlayCSS: {
+                    backgroundColor: '#fff',
+                    opacity: 0.8,
+                    cursor: 'wait'
+                },
+                css: {
+                    border: 0,
+                    padding: 0,
+                    backgroundColor: 'transparent'
+                }
+            });
+
+        }
+
+
+        function UnLoadElement(pSelector) {
+
+            $(pSelector).unblock();
+
+        }
+
+    </script>
+    <!-- /page container -->
+</body>
+
+</html>

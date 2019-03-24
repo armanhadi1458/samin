@@ -1,0 +1,30 @@
+﻿@model SaminProject.ViewModels.FooterViewModel
+
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="single-footer-widget">
+            <h6>درباره ما</h6>
+            <p>
+                @Model.AboutUs
+            </p>
+            <p class="footer-text">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> made with <a href="https://colorlib.com" target="_blank">ArmanHadi</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-lg-offst-3 col-md-offset-3 social-widget">
+        <div class="single-footer-widget">
+            <h6>مارا دنبال کنید</h6>
+            <p>شبکه های اجتماعی</p>
+            <div class="footer-social d-flex align-items-center">
+                <a href="@Model.FacebookLink"><i class="fa fa-facebook"></i></a>
+                <a href="@Model.InstagramLink"><i class="fa fa-instagram"></i></a>
+                <a href="@Model.TelegramLink"><i class="fa fa-telegram"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+

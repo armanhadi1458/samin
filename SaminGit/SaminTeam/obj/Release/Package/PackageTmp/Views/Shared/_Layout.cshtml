@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/fav.png">
+    <!-- Author Meta -->
+    <meta name="author" content="codepixer">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>ثمین</title>
+    <!--
+    CSS
+    ============================================= -->
+    <link rel="stylesheet" href="~/Content/css/linearicons.css">
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/assest/css/icons/icomoon/styles.css" rel="stylesheet" />
+    <link href="~/Content/css/IranSans.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/css/bootstrap-rtl.css" />
+    <link rel="stylesheet" href="~/Content/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/css/nice-select.css">
+    <link rel="stylesheet" href="~/Content/css/hexagons.min.css">
+    <link rel="stylesheet" href="~/Content/css/animate.min.css">
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.css">
+    <link href="~/Content/css/owl.theme.default.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css" />
+    <link rel="stylesheet" href="~/Content/css/main.css">
+</head>
+<body>
+    <header id="header" id="home">
+        <div class="container main-menu">
+            <div class="row align-items-center justify-content-between d-flex">
+
+                @Html.Action("_HeaderPartial", "Home")
+
+            </div>
+        </div>
+    </header><!-- #header -->
+
+
+    @RenderBody()
+
+
+    <footer class="footer-area section-gap">
+        <div class="container">
+
+            @Html.Action("_FooterPartial", "Home")
+
+        </div>
+    </footer>
+    <!-- End footer Area -->
+    <script src="~/Content/js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Content/tether/js/tether.min.js"></script>
+    <script src="~/Content/js/vendor/bootstrap-rtl.js"></script>
+    <script src="~/Content/js/easing.min.js"></script>
+    <script src="~/Content/js/hoverIntent.js"></script>
+    <script src="~/Content/js/superfish.min.js"></script>
+    <script src="~/Content/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/Content/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/js/owl.carousel.min.js"></script>
+    <script src="~/Content/js/hexagons.min.js"></script>
+    <script src="~/Content/js/jquery.nice-select.min.js"></script>
+    <script src="~/Content/js/jquery.counterup.min.js"></script>
+    <script src="~/Content/js/waypoints.min.js"></script>
+    <script src="~/Content/js/mail-script.js"></script>
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js"></script>
+    <script src="~/Content/js/main.js"></script>
+
+    @RenderSection("Scripts", false)
+</body>
+</html>
+

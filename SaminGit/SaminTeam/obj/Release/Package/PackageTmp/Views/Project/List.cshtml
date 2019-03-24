@@ -1,0 +1,89 @@
+﻿@model SaminProject.Models.PageInformation
+
+@{
+    ViewBag.Title = "لیست پروژه ها";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home" style="background: url(/Content/Pages-image/@Model.FileName) center; background-size: cover; background-repeat: no-repeat;">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    پروژه ها
+                </h1>
+                <p class="text-white link-nav"><a href="index.html">خانه </a>  <span class="lnr lnr-arrow-left"></span>  <a href="services.html"> پروژه ها</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start project Area -->
+<section class="project-area section-gap" id="project">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 pb-30 header-text text-center" id="project-header">
+                <input type="hidden" id="counter" value="1" />
+                @if (!string.IsNullOrWhiteSpace(Model.Title))
+                {
+                    <h1 class="mb-10">@Model.Title</h1>
+                    <p>
+                        @Model.SubTitle
+                    </p>
+                }
+                else
+                {
+                    <h1 class="mb-10">آخرین پروژه ها</h1>
+                    <p>
+                        آخرین پروژه هایی که توسط ما به اتمام رسیده است در زیر مشاهده مینمایید 
+                    </p>
+                }
+            </div>
+        </div>
+        <div class="row" id="projectWrapper">
+            @{
+                Html.RenderAction("_ProjectWrapper");
+            }
+        </div>
+    </div>
+</section>
+<!-- End project Area -->
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#projectWrapper').on('click', '#LoadProject',  function () {
+                var counter = $('#counter').val();
+                $('#buttonLoad').remove();
+
+                $.ajax({
+                    url: '/Project/_ProjectWrapper',
+                    type: 'GET',
+                    data: { pCount: counter },
+                    success: function (data) {
+                        $("#projectWrapper").append(data);
+                        $('.img-gal').magnificPopup({
+                            type: 'image',
+                            tClose: 'بستن', // Alt text on close button
+                            tLoading: 'در حال بارگذاری ...',
+                            gallery: {
+                                enabled: true,
+                                arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>', // markup of an arrow button
+                                tPrev: 'تصویر قبلی', // title for left button
+                                tNext: 'تصویر بعدی', // title for right button
+                                tCounter: '<span class="mfp-counter">%curr% از %total%</span>' // markup of counter
+                            }
+                        });
+                        $('#counter').val(parseInt(counter) + 1)
+                    },
+                    error: function (xhr) {
+                        return false;
+                    }
+                })
+            })
+        })
+    </script>
+}

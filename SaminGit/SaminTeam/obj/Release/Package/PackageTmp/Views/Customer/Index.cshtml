@@ -1,0 +1,158 @@
+﻿@model IEnumerable<SaminProject.Models.Customer>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    #tblCustomers thead th:first-child {
+        width: 250px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-white" id="form_panel">
+            <div class="panel-heading">
+                <h6 class="panel-title"><i class="icon-users position-left"></i>لیست مشتریان<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+
+                <div class="heading-elements">
+                    <ul class="icons-list">
+                        <li>
+                            <a href="/Customer/Create" class="newbtn"><i class="icon-add" aria-hidden="true"></i> مشتری جدید</a>
+                        </li>
+                        <li><a data-action="collapse" class=""></a></li>
+                    </ul>
+                    <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="col-md-12">
+                            <div class="alert alert-success alert-styled-left alert-arrow-left alert-component">
+                                @TempData["Success"]
+                            </div>
+                        </div>
+                    }
+
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="col-md-12">
+                            <div class="alert alert-danger alert-styled-left alert-arrow-left alert-component">
+                                @TempData["Error"]
+                            </div>
+                        </div>
+                    }
+
+                    <table class="table table-hover table-striped" id="tblCustomers">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(m => m.Name) </th>
+                                <th>@Html.DisplayNameFor(m => m.Email) </th>
+                                <th>@Html.DisplayNameFor(m => m.PhoneNumber) </th>
+                                <th>@Html.DisplayNameFor(m => m.Address) </th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @{
+
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="text-nowrap" tabindex="0">
+                                            <div class="media-left media-middle">
+                                                @{
+                                                    if (!string.IsNullOrWhiteSpace(item.Base64Image))
+                                                    {
+                                                        <img src="@String.Format("data:image/png;base64,{0}", item.Base64Image)" class="img-circle img-sm" alt="@item.Name">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/assest/images/logo-placeholder.jpg" class="img-circle img-sm" alt="@item.Name">
+                                                    }
+                                                }
+                                            </div>
+                                            <div class="media-body  media-middle">
+                                                <div class="media-heading">
+                                                    <span class="media-heading text-semibold">@item.Name</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>@item.Email</td>
+                                        <td>@item.PhoneNumber</td>
+                                        <td class="text-nowrap">@item.Address</td>
+                                        <th class="text-nowrap">
+                                            <ul class="icons-list">
+                                                <li class="text-primary-600 pt-5"><a class="btn_editCustomer" href="/Customer/Create/@item.ID"><i class="icon-pencil7"></i></a></li>
+                                                <li class="text-danger-600 pt-5"><a data-toggle="modal" data-id="@item.ID" data-target="#deleteModal"><i class="icon-trash"></i></a></li>
+                                            </ul>
+                                        </th>
+                                    </tr>
+                                                    }
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <i class="icon-trash"></i>
+                    حذف مشتری
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>آیا از حذف مشتری اطمینان دارید؟</p>
+            </div>
+            <div class="modal-footer">
+                <form action="/Customer/Delete" method="post" id="frm_delete" autocomplete="off">
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("Id")
+                    <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+                    <button type="button" class="btn btn-danger" id="btn_delete">حذف مشتری</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var table = $('#tblCustomers').DataTable();
+
+        $("#btn_editCustomer").on('click', function () {
+            LoadElement('#form_panel');
+        });
+
+        $("#deleteModal").on('show.bs.modal', function (e) {
+            UnLoadElement("#deleteModal .modal-content")
+            var btn = $(e.relatedTarget);
+            var id = btn.data("id");
+
+            if (id == null || id == '') {
+                $("#deleteModal").modal("hide");
+            }
+
+            $('#Id').val(id);
+
+            $("#btn_delete").unbind("click");
+            $("#btn_delete").on("click", function () {
+                LoadElement("#deleteModal .modal-content");
+                $('#frm_delete').submit();
+            });
+
+        });
+    });
+</script>
