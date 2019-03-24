@@ -70,6 +70,53 @@
     </div>
 </section>
 <!-- End service Area -->
+<!-- Start product Area -->
+<section class="service-area section-gap" id="service">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 pb-30 header-text text-center" id="product-header">
+                @if (!string.IsNullOrWhiteSpace(Model.ProductTitle))
+                {
+                    <h1 class="mb-10">@Model.ProductTitle</h1>
+                    <p>
+                        @Model.ProductSubTitle
+                    </p>
+                }
+                else
+                {
+                    <h1 class="mb-10">محصولات</h1>
+                    <p>
+                        پر طرفدارترین محصولات مارا در زیر مشاهده مینمایید برای دیدن کلیه محصولات <a href="/Product/List">اینجا</a> کلیک نمایید ..
+                    </p>
+                }
+            </div>
+        </div>
+        <div class="row">
+            @{
+                Html.RenderPartial("_ProductPartial", Model.Products);
+                int emptyProduct = 3 - Model.Products.Count;
+                if (emptyProduct > 0)
+                {
+                    for (int i = 0; i < emptyProduct; i++)
+                    {
+                        <div class="col-lg-4">
+                            <div class="single-service">
+                                <div class="thumb">
+                                    <img src="/Content/img/s1.jpg" alt="img">
+                                </div>
+                                <h4>لورم ایپسوم</h4>
+                                <p>
+                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                                </p>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </div>
+</section>
+<!-- End product Area -->
 <!-- Start faq Area -->
 <section class="faq-area section-gap relative">
     <div class="overlay overlay-bg"></div>
@@ -123,53 +170,6 @@
     </div>
 </section>
 <!-- End faq Area -->
-<!-- Start product Area -->
-<section class="service-area section-gap" id="service">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12 pb-30 header-text text-center" id="product-header">
-                @if (!string.IsNullOrWhiteSpace(Model.ProductTitle))
-                {
-                    <h1 class="mb-10">@Model.ProductTitle</h1>
-                    <p>
-                        @Model.ProductSubTitle
-                    </p>
-                }
-                else
-                {
-                    <h1 class="mb-10">محصولات</h1>
-                    <p>
-                        پر طرفدارترین محصولات مارا در زیر مشاهده مینمایید برای دیدن کلیه محصولات <a href="/Product/List">اینجا</a> کلیک نمایید ..
-                    </p>
-                }
-            </div>
-        </div>
-        <div class="row">
-            @{
-                Html.RenderPartial("_ProductPartial", Model.Products);
-                int emptyProduct = 3 - Model.Products.Count;
-                if (emptyProduct > 0)
-                {
-                    for (int i = 0; i < emptyProduct; i++)
-                    {
-                        <div class="col-lg-4">
-                            <div class="single-service">
-                                <div class="thumb">
-                                    <img src="/Content/img/s1.jpg" alt="img">
-                                </div>
-                                <h4>لورم ایپسوم</h4>
-                                <p>
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                                </p>
-                            </div>
-                        </div>
-                    }
-                }
-            }
-        </div>
-    </div>
-</section>
-<!-- End product Area -->
 <!-- Start project Area -->
 <section class="project-area section-gap" id="project">
     <div class="container">
@@ -211,76 +211,6 @@
     </div>
 </section>
 <!-- End project Area -->
-<!-- Start feedback Area -->
-<section class="feedback-area section-gap relative" id="feedback">
-    <div class="overlay overlay-bg"></div>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12 pb-30 header-text text-center">
-                <h1 class="mb-10 text-white">Enjoy our Client’s Feedback</h1>
-                <p class="text-white">
-                    Who are in extremely love with eco friendly system..
-                </p>
-            </div>
-        </div>
-        <div class="row feedback-contents justify-content-center align-items-center">
-            <div class="col-lg-6 feedback-left relative d-flex justify-content-center align-items-center">
-                <div class="overlay overlay-bg"></div>
-                <a class="play-btn" href="https://www.youtube.com/watch?v=ARA0AxrnHdM"><img class="img-fluid" src="~/Content/img/play-btn.png" alt=""></a>
-            </div>
-            <div class="col-lg-6 feedback-right">
-                <div class="active-review-carusel">
-                    <div class="single-feedback-carusel">
-                        <div class="title d-flex flex-row">
-                            <h4 class="text-white pb-10">Fannie Rowe</h4>
-                            <div class="star">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                        </div>
-                        <p class="text-white">
-                            Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-                        </p>
-                    </div>
-                    <div class="single-feedback-carusel">
-                        <div class="title d-flex flex-row">
-                            <h4 class="text-white pb-10">Fannie Rowe</h4>
-                            <div class="star">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                        </div>
-                        <p class="text-white">
-                            Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-                        </p>
-                    </div>
-                    <div class="single-feedback-carusel">
-                        <div class="title d-flex flex-row">
-                            <h4 class="text-white pb-10">Fannie Rowe</h4>
-                            <div class="star">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked	"></span>
-                            </div>
-                        </div>
-                        <p class="text-white">
-                            Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End feedback Area -->
 <!-- Start blog Area -->
 <section class="blog-area section-gap" id="blog">
     <div class="container">
@@ -336,40 +266,49 @@
     </div>
 </section>
 <!-- end blog Area -->
+<!-- Start project Area -->
+<div class="row">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 pb-30 header-text text-center" id="customer-header">
+                <h1 class="mb-10">مشتریان ما</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="owl-carousel owl-theme">
+                @foreach (var item in Model.Customers)
+                {
+                    <div class="row">
+                        <div class="thumb">
+                            <img src="data:image/png;base64, @item.Base64Image" alt="@item.Name" style="height: 120px;" />
+                        </div>
+                        <div class="bottom d-flex justify-content-between align-items-center flex-wrap text-center">
+                            <div>
+                                <span>@item.Name</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @*<div class="item"><h4>1</h4></div>
+                    <div class="item"><h4>2</h4></div>
+                    <div class="item"><h4>3</h4></div>
+                    <div class="item"><h4>4</h4></div>
+                    <div class="item"><h4>5</h4></div>
+                    <div class="item"><h4>6</h4></div>
+                    <div class="item"><h4>7</h4></div>
+                    <div class="item"><h4>8</h4></div>
+                    <div class="item"><h4>9</h4></div>
+                    <div class="item"><h4>10</h4></div>
+                    <div class="item"><h4>11</h4></div>
+                    <div class="item"><h4>12</h4></div>*@
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End project Area -->
 <!-- start footer Area -->
 
 @section Scripts{
-
-    <script>
-        $(document).ready(function () {
-            $('.product').on('click', function () {
-                var id = $(this).data('id');
-                if (id != '' && id != undefined)
-                    window.location.href = "/Product/Detail/" + id;
-            });
-
-            $('.single-blog').on('click', function () {
-                var id = $(this).data('id');
-                if (id != '' && id != undefined)
-                    window.location.href = "/News/Detail/" + id;
-            });
-
-            $('#service-header').on('click', function () {
-                window.location.href = "/Service/List";
-            });
-
-            $('#product-header').on('click', function () {
-                window.location.href = "/Product/List";
-            });
-
-            $('#project-header').on('click', function () {
-                window.location.href = "/Project/List";
-            });
-
-            $('#news-header').on('click', function () {
-                window.location.href = "/News/List";
-            });
-        })
-    </script>
-
+    <script src="~/Scripts/Page/Index.js"></script>
 }

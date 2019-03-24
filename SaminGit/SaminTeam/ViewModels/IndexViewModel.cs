@@ -58,5 +58,7 @@ namespace SaminProject.ViewModels
 
         public string TotalAgency { get; set; }
 
+        public List<Customer> Customers { get; set; }
+
     }
 }

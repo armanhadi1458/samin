@@ -2395,6 +2395,7 @@
     <Content Include="Content\css\main.css" />
     <Content Include="Content\css\nice-select.css" />
     <Content Include="Content\css\owl.carousel.css" />
+    <Content Include="Content\css\owl.theme.default.min.css" />
     <Content Include="Content\css\theme\pages.css" />
     <Content Include="Content\img\b1.jpg" />
     <Content Include="Content\img\b2.jpg" />
@@ -2578,6 +2579,7 @@
     <Content Include="Scripts\Page\BaseInformation.js" />
     <Content Include="Scripts\Page\ContactList.js" />
     <Content Include="Scripts\Page\Customer.js" />
+    <Content Include="Scripts\Page\Index.js" />
     <Content Include="Scripts\Page\PageInformation.js" />
     <Content Include="Scripts\Page\Product.js" />
     <Content Include="Scripts\Page\Project.js" />

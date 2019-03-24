@@ -28,6 +28,7 @@ namespace SaminProject.Controllers
                 model.TotalClient = BaseInfo.TotalClient;
                 model.TotalEmployees = BaseInfo.TotalEmployees;
                 model.TotalProject = BaseInfo.TotalProject;
+                model.Customers = unitOfWork.CustomerRepository.Get().ToList();
                 List<PageInformation> pages = unitOfWork.PageInformationRepository.Get().ToList();
                 if (pages != null && pages.Count != 0)
                 {
